@@ -18,6 +18,7 @@ import { AppMenuitemComponent } from './core/components/menu-item/app.menuitem.c
 import { AppConfigComponent } from './core/components/config/app.config.component';
 import { PrimenNgModule } from './modules/primen-ng/primen-ng.module';
 import { HomeComponent } from './core/components/home/home.component';
+import { SharedModule } from 'primeng/api';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { HomeComponent } from './core/components/home/home.component';
         HttpClientModule,
         BrowserAnimationsModule,
         PrimenNgModule,
+        SharedModule,
     ],
     declarations: [
         AppComponent,

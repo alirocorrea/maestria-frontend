@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { StyleClassModule } from 'primeng/styleclass';
 import { AccordionModule } from 'primeng/accordion';
 import { AutoCompleteModule } from 'primeng/autocomplete';
@@ -86,7 +86,6 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
 @NgModule({
   declarations: [],
   exports: [
-    CommonModule,
     AccordionModule,
     AutoCompleteModule,
     AvatarModule,
