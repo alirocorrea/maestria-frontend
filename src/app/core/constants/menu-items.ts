@@ -11,8 +11,9 @@ export const menuItems: MenuItem[] = [
         icon: 'pi pi-fw pi-user',
         items: [
             {
-                label: 'Opcion 1',
-                icon: 'pi pi-fw pi-list'
+                label: 'Gestion Estudiantes',
+                icon: 'pi pi-fw pi-list',
+                routerLink: '/estudiantes',
             },
             {
                 label: 'Opcion 2',

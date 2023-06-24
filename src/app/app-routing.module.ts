@@ -12,6 +12,13 @@ import { HomeComponent } from './core/components/home/home.component';
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', component: HomeComponent},
+                    {
+                        path: 'estudiantes',
+                        loadChildren: () =>
+                            import(
+                                './modules/gestion-estudiantes/gestion-estudiantes.module'
+                            ).then((m) => m.GestionEstudiantesModule)
+                    },
                 ],
             },
             {path:'pages/error', component: ErrorComponent},
