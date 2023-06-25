@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, timeout } from 'rxjs';
+import { Observable, delay, of } from 'rxjs';
 import { Estuadiante } from '../models/estudiante';
 
 @Injectable({
@@ -8,12 +8,12 @@ import { Estuadiante } from '../models/estudiante';
 })
 export class EstudiantesService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  fetchEstudiantes() : Observable<Estuadiante[]>{
+  fetchEstudiantes(): Observable<Estuadiante[]>{
     return of([
         { nombre: 'Estudiante 1', correo: 'estudiante1@example.com', id: 1 },
         { nombre: 'Estudiante 2', correo: 'estudiante2@example.com', id: 2 }
-      ]).pipe(timeout(2000));;
+      ]).pipe(delay(1000));;
   }
 }
