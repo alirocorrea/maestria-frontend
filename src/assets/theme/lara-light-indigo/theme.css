@@ -4155,10 +4155,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
 }
 
 .p-breadcrumb {
-  background: #ffffff;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  padding: 1rem;
+  padding: 1.25rem 2rem;
 }
 .p-breadcrumb ul li .p-menuitem-link {
   transition: box-shadow 0.2s;
@@ -4535,7 +4532,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
   border-radius: 6px;
 }
 .p-menubar .p-menuitem-link {
-  padding: 0.75rem 1.25rem;
+  padding: 1rem 1.5rem;
   color: #495057;
   border-radius: 0;
   transition: box-shadow 0.2s;

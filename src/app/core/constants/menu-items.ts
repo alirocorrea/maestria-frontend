@@ -2,7 +2,7 @@ import { MenuItem } from "primeng/api";
 
 export const menuItems: MenuItem[] = [
     {
-        label: 'INICO',
+        label: 'INICIO',
         icon: 'pi pi-fw pi-home',
         routerLink: '/'
     },
@@ -11,15 +11,16 @@ export const menuItems: MenuItem[] = [
         icon: 'pi pi-fw pi-user',
         items: [
             {
-                label: 'Gestion Estudiantes',
-                icon: 'pi pi-fw pi-list',
+                label: 'ESTUDIANTES',
+                icon: 'pi pi-user',
                 routerLink: '/estudiantes',
             },
-            {
-                label: 'Opcion 2',
-                icon: 'pi pi-fw pi-search'
-            }
 
+            {
+                label: 'DOCENTES',
+                icon: 'pi pi-user',
+                routerLink: '/estudiantes',
+            },
         ]
     },
     {

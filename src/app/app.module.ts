@@ -20,6 +20,8 @@ import { PrimenNgModule } from './modules/primen-ng/primen-ng.module';
 import { HomeComponent } from './core/components/home/home.component';
 import { SharedModule } from 'primeng/api';
 import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-estudiantes.module';
+import { AppBreadcrumbComponent } from './core/components/breadcrumb/app.breadcrumb.component';
+import { BreadcrumbService } from './core/components/breadcrumb/app.breadcrumb.service';
 
 @NgModule({
     imports: [
@@ -40,12 +42,14 @@ import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-
         AppMenuComponent,
         AppMenuitemComponent,
         AppConfigComponent,
+        AppBreadcrumbComponent,
         HomeComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         MenuService,
-        ConfigService
+        ConfigService,
+        BreadcrumbService,
     ],
     bootstrap: [AppComponent]
 })
