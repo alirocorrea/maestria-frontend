@@ -3758,6 +3758,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
   color: #343a40;
   border-top-right-radius: 6px;
   border-top-left-radius: 6px;
+  justify-content: center;
 }
 .p-panel .p-panel-header .p-panel-title {
   font-weight: 700;
@@ -4155,7 +4156,7 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
 }
 
 .p-breadcrumb {
-  padding: 1.25rem 2rem;
+  padding: 1.25rem 3rem;
 }
 .p-breadcrumb ul li .p-menuitem-link {
   transition: box-shadow 0.2s;

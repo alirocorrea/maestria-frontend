@@ -19,7 +19,7 @@ export const menuItems: MenuItem[] = [
             {
                 label: 'DOCENTES',
                 icon: 'pi pi-user',
-                routerLink: '/estudiantes',
+                routerLink: '/docentes',
             },
         ]
     },
