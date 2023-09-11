@@ -2,4 +2,93 @@
     <p-header>
         <b>GESTIÓN DE ESTUDIANTES</b>
     </p-header>
+    <!-- Encabezado -->
+    <div class="grid">
+        <!-- Busqueda -->
+        <div class="col-5">
+            <div class="flex align-items-end h-full">
+                <span class="p-input-icon-left w-full">
+                    <i class="pi pi-search"></i>
+                    <input
+                        pInputText
+                        type="text"
+                        class="w-full"
+                        placeholder="Buscar"
+                    />
+                </span>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <!-- Carga Estudiantes -->
+        <div class="col-6">
+            <div class="w-full text-right">
+                <button
+                    pButton
+                    icon="pi pi-plus"
+                    label="Agregar estudiante"
+                ></button>
+            </div>
+            <p-fieldset legend="Cargar estudiantes">
+                <div class="grid">
+                    <div class="col-8">
+                        <input
+                            pInputText
+                            type="text"
+                            class="p-inputtext-sm w-full"
+                            placeholder="Seleccione un archivo con formato .xlsx"
+                            [disabled]="true"
+                        />
+                    </div>
+                    <div class="col-4">
+                        <p-button
+                            label="Seleccionar"
+                            icon="pi pi-file-excel"
+                            styleClass="p-button-sm w-full p-button-outlined"
+                        ></p-button>
+                        <p-button
+                            label="Cargar estudiantes"
+                            icon="pi pi-upload"
+                            styleClass="p-button-sm w-full mt-2 p-button-outlined"
+                        ></p-button>
+                    </div>
+                </div>
+
+            </p-fieldset>
+        </div>
+    </div>
+    <br />
+    <!-- Tabla -->
+    <p-table
+        [paginator]="true"
+        [loading]="loading"
+        [rows]="10"
+        styleClass="p-datatable-gridlines p-datatable-striped"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">Código estudiantes</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Correo electronico</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </ng-template>
+        <!-- Contenido  -->
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{product.code}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.quantity}}</td>
+            </tr>
+        </ng-template>
+        <!-- Mensaje sin registros -->
+        <ng-template pTemplate="emptymessage" let-columns>
+            <tr>
+                <td [attr.colspan]="5">
+                    No se encontraron registros
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </p-panel>

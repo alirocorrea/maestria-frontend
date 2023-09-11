@@ -10,8 +10,7 @@ import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadc
 })
 export class BandejaEstudiantesComponent implements OnInit {
 
-    estudiantes: Estuadiante[] = [];
-    loading: boolean = false;
+    loading: boolean;
 
     constructor(private breadcrumbService: BreadcrumbService) {}
 
