@@ -1,0 +1,35 @@
+<div class="grid">
+    <div class="col-8">
+        <input
+            pInputText
+            type="text"
+            class="p-inputtext-sm w-full"
+            placeholder="Seleccione un archivo con formato .xlsx"
+            [disabled]="true"
+            [value]="labelFile"
+        />
+    </div>
+    <div class="col-4">
+        <p-button
+            label="Seleccionar"
+            icon="pi pi-file-excel"
+            styleClass="p-button-sm w-full p-button-outlined"
+            (click)="fileInput.click()"
+        ></p-button>
+        <input
+            #fileInput
+            hidden
+            accept=".xlsx"
+            type="file"
+            (change)="onFileSelected($event)"
+        >
+        <p-button
+            label="Cargar estudiante"
+            icon="pi pi-upload"
+            styleClass="p-button-sm w-full mt-2 p-button"
+            [disabled]="!file"
+            [loading]="loading"
+            (onClick)="onCargar()"
+        ></p-button>
+    </div>
+</div>

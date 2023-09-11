@@ -6,15 +6,16 @@ import { PrimenNgModule } from '../primen-ng/primen-ng.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PrincipalGestionEstudiantesComponent } from './pages/principal-gestion-estudiantes/principal-gestion-estudiantes.component';
 import { BandejaEstudiantesComponent } from './components/bandeja-estudiantes/bandeja-estudiantes.component';
-import { EstudianteComponent } from './components/estudiante/estudiante.component';
 import { EstudiantesService } from './services/estudiantes.service';
+import { CargarEstudiantesComponent } from './components/cargar-estudiantes/cargar-estudiantes.component';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
   declarations: [
     PrincipalGestionEstudiantesComponent,
     BandejaEstudiantesComponent,
-    EstudianteComponent
+    CargarEstudiantesComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { EstudiantesService } from './services/estudiantes.service';
     GestionEstudiantesRoutingModule
   ],
   providers: [
+    MessageService,
     EstudiantesService,
   ]
 })
