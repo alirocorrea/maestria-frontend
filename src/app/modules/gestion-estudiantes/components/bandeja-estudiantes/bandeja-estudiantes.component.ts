@@ -20,9 +20,8 @@ export class BandejaEstudiantesComponent implements OnInit {
 
     setBreadcrumb() {
         this.breadcrumbService.setItems([
-            {
-                label: 'Gestión de estudiantes',
-            },
+            { label: 'Gestión' },
+            { label: 'Estudiantes' },
         ]);
     }
 }
