@@ -14,6 +14,7 @@
                         type="text"
                         class="w-full"
                         placeholder="Buscar estudiante"
+                        (input)="tableEstudiantes.filterGlobal($event.target.value, 'contains')"
                     />
                 </span>
             </div>
@@ -30,34 +31,64 @@
                 ></button>
             </div>
             <p-fieldset legend="Cargar estudiantes">
-                <app-cargar-estudiantes></app-cargar-estudiantes>
+                <app-cargar-estudiantes (onCargaExitosa)="onCargaExitosa()"></app-cargar-estudiantes>
             </p-fieldset>
         </div>
     </div>
     <br />
-    <!-- Tabla -->
+    <!-- Tabla Estudiantes -->
     <p-table
+        #tableEstudiantes
+        [value]="estudiantes"
         [paginator]="true"
         [loading]="loading"
-        [rows]="10"
+        [rows]="5"
+        breakpoint="768px"
         styleClass="p-datatable-gridlines p-datatable-striped"
+        [globalFilterFields]="['codigo','persona.nombre', 'persona.apellido', 'persona.correoElectronico']"
     >
         <ng-template pTemplate="header">
             <tr>
-                <th scope="col">Código estudiantes</th>
+                <th scope="col">Código estudiantil</th>
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Correo electronico</th>
-                <th scope="col">Opciones</th>
+                <th scope="col">Estado</th>
+                <th scope="col" class="text-center w-2">Opciones</th>
             </tr>
         </ng-template>
         <!-- Contenido  -->
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-estudiante>
             <tr>
-                <td>{{product.code}}</td>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.quantity}}</td>
+                <td>{{ estudiante.codigo }}</td>
+                <td>{{ estudiante.persona.nombre }}</td>
+                <td>{{ estudiante.persona.apellido }}</td>
+                <td>{{ estudiante.persona.correoElectronico }}</td>
+                <td>{{ getEstadoMaestria(estudiante.informacionMaestria.estadoMaestria) }}</td>
+                <td class="text-center">
+                    <button
+                        pButton
+                        pTooltip="Ver estados"
+                        type="button"
+                        icon="pi pi-search"
+                        class="p-button-rounded p-button-text"
+                        (click)="onVerEstados(estudiante.id)"
+                    ></button>
+                    <button
+                        pButton
+                        pTooltip="Editar"
+                        type="button"
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-text p-button-warning"
+                    ></button>
+                    <button
+                        pButton
+                        pTooltip="Eliminar"
+                        type="button"
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-text p-button-danger"
+                    ></button>
+                </td>
             </tr>
         </ng-template>
         <!-- Mensaje sin registros -->

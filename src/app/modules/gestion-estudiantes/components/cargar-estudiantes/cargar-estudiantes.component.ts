@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Mensaje } from 'src/app/core/enums/enums';
-import { infoMessage } from 'src/app/core/utils/message-util';
+import { errorMessage, infoMessage } from 'src/app/core/utils/message-util';
+import { EstudianteService } from '../../services/estudiante.service';
 
 @Component({
     selector: 'app-cargar-estudiantes',
@@ -10,12 +11,15 @@ import { infoMessage } from 'src/app/core/utils/message-util';
 })
 export class CargarEstudiantesComponent implements OnInit {
 
+    @Output() onCargaExitosa = new EventEmitter<void> ();
+
     file: File;
     loading: boolean;
     labelFile: string = null;
 
     constructor(
         private messageService: MessageService,
+        private estudianteService: EstudianteService,
     ) {}
 
     ngOnInit(): void {}
@@ -30,10 +34,17 @@ export class CargarEstudiantesComponent implements OnInit {
 
     onCargar() {
         this.loading = true;
-        setTimeout(() => {
-            this.messageService.add(infoMessage(Mensaje.REGISTRO_ESTUDIANTES_EXITOSO))
-            this.onReset();
-        }, 1000);
+        this.estudianteService.uploadEstudiantes(this.file).subscribe({
+            next: () => {
+                this.messageService.add(infoMessage(Mensaje.REGISTRO_ESTUDIANTES_EXITOSO))
+                this.onCargaExitosa.emit();
+                this.onReset();
+            },
+            error: () => {
+                this.messageService.add(errorMessage(Mensaje.ERROR_CARGAR_ESTUDIANTES))
+                this.onReset();
+            }
+        });
     }
 
     onReset() {

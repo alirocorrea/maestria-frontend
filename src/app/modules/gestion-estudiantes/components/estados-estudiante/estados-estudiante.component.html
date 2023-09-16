@@ -13,37 +13,31 @@
             <p>Código:</p>
         </div>
         <div class="col-8">
-            <p>1061791135</p>
+            <p>{{ estudiante.codigo}}</p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Nombres:</p>
         </div>
         <div class="col-8">
-            <p>Aliro Antonio</p>
+            <p>{{ estudiante.nombre}} </p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Apellidos:</p>
         </div>
         <div class="col-8">
-            <p>Correa Gutierrez</p>
+            <p>{{ estudiante.apellido }}</p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Director:</p>
         </div>
         <div class="col-8">
-            <p>Martha Mendoza</p>
+            <p>{{ estudiante.director }}</p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Co director:</p>
         </div>
         <div class="col-8">
-            <p>Carlos Cobos</p>
-        </div>
-        <div class="col-4 text-right font-medium">
-            <p>Semestre académico:</p>
-        </div>
-        <div class="col-8">
-            <p>4</p>
+            <p>{{ estudiante.codirector }}</p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Estado:</p>
@@ -53,7 +47,7 @@
                 <p-radioButton
                     name="estado"
                     value="ACTIVO"
-                    [(ngModel)]="estadoRadioButton"
+                    [(ngModel)]="estudiante.estadoMaestria"
                 ></p-radioButton>
                 <label>Activo</label>
             </div>
@@ -61,7 +55,7 @@
                 <p-radioButton
                     name="estado"
                     value="FINALIZO"
-                    [(ngModel)]="estadoRadioButton"
+                    [(ngModel)]="estudiante.estadoMaestria"
                 ></p-radioButton>
                 <label>Finalizo la maestria</label>
             </div>
@@ -69,7 +63,7 @@
                 <p-radioButton
                     name="estado"
                     value="RETIRADO"
-                    [(ngModel)]="estadoRadioButton"
+                    [(ngModel)]="estudiante.estadoMaestria"
                 ></p-radioButton>
                 <label>Retirado</label>
             </div>
@@ -77,7 +71,7 @@
                 <p-radioButton
                     name="estado"
                     value="ESTADO"
-                    [(ngModel)]="estadoRadioButton"
+                    [(ngModel)]="estudiante.estadoMaestria"
                 ></p-radioButton>
                 <label>En suspención</label>
             </div>
@@ -91,6 +85,7 @@
                 [showButtons]="true"
                 [min]="1"
                 [max]="10"
+                [(ngModel)]="estudiante.semestreAcademico"
             ></p-inputNumber>
         </div>
         <div class="col-4 text-right font-medium">
@@ -102,6 +97,7 @@
                 [showButtons]="true"
                 [min]="1"
                 [max]="10"
+                [(ngModel)]="estudiante.semestreFinanciero"
             ></p-inputNumber>
         </div>
     </div>
@@ -113,11 +109,12 @@
             <p><b>Prórrogas/suspensiones de término</b></p>
         </div>
         <div class="col-7">
-            <!-- Tabla -->
+            <!-- Tabla Prorrogas-->
             <p-table
                 [loading]="loading"
                 styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
                 [breakpoint]="'800px'"
+                [value]="estudiante.prorrogas"
             >
                 <ng-template pTemplate="header">
                     <tr>
@@ -128,12 +125,12 @@
                     </tr>
                 </ng-template>
                 <!-- Contenido  -->
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-prorroga>
                     <tr>
-                        <td>{{ product.code }}</td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.category }}</td>
-                        <td>{{ product.quantity }}</td>
+                        <td>{{ prorroga.fecha | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ prorroga.resolucion }}</td>
+                        <td>{{ prorroga.linkDocumento }}</td>
+                        <td></td>
                     </tr>
                 </ng-template>
                 <!-- Mensaje sin registros -->
@@ -154,11 +151,12 @@
             <p><b>Reingresos</b></p>
         </div>
         <div class="col-7">
-            <!-- Tabla -->
+            <!-- Tabla Reingresos-->
             <p-table
                 [loading]="loading"
                 styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
                 [breakpoint]="'800px'"
+                [value]="estudiante.reingresos"
             >
                 <ng-template pTemplate="header">
                     <tr>
@@ -171,12 +169,14 @@
                     </tr>
                 </ng-template>
                 <!-- Contenido  -->
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-reingreso>
                     <tr>
-                        <td>{{ product.code }}</td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.category }}</td>
-                        <td>{{ product.quantity }}</td>
+                        <td>{{ reingreso.fecha | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ reingreso.resolucion }}</td>
+                        <td>{{ reingreso.semestreFinanciero }}</td>
+                        <td>{{ reingreso.semestreAcademico }}</td>
+                        <td>{{ reingreso.linkDocumento }}</td>
+                        <td></td>
                     </tr>
                 </ng-template>
                 <!-- Mensaje sin registros -->
@@ -190,4 +190,12 @@
         <div class="col-1"></div>
     </div>
     <br />
+    <p-footer>
+        <button
+            pButton
+            icon="pi pi-arrow-left"
+            label="Volver"
+            (click)="onVolver()"
+        ></button>
+    </p-footer>
 </p-panel>

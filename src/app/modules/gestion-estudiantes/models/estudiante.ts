@@ -1,5 +1,7 @@
+import { Persona } from "./persona";
+
 export interface Estuadiante {
-    id: number;
-    nombre: string;
-    correo: string;
+    id?: number;
+    codigo?: string;
+    persona?: Persona;
 }
