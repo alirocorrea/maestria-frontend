@@ -1,0 +1,185 @@
+<br />
+
+<!-- Informacion Personal -->
+<div class="col-4 text-right font-medium">
+    <p><b>Información personal</b></p>
+</div>
+<div class="col-8"></div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Código</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            pKeyFilter="int"
+            [maxLength]="50"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Tipo de identifcación</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="['CC', 'TI']"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Número indentificación</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            pKeyFilter="int"
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Nombres y apellidos</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-12rem"
+        />
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-12rem ml-3"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Correo universidad</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Ciudad residencia</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Titulo universitario</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Teléfono</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            pKeyFilter="int"
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<br />
+
+<!-- Caracterización -->
+<div class="col-4 text-right font-medium">
+    <p><b>Caracterización</b></p>
+</div>
+<div class="col-8"></div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Género</label>
+    </div>
+    <div class="col-8 flex aling-items-center">
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="M"
+                [(ngModel)]="generoRaddioButton"
+            ></p-radioButton>
+            <label>Masculino</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="F"
+                [(ngModel)]="generoRaddioButton"
+            ></p-radioButton>
+            <label>Femenino</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="O"
+                [(ngModel)]="generoRaddioButton"
+            ></p-radioButton>
+            <label>Otro</label>
+        </div>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Tipo de población</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="['AAAA', 'BBB']"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Etnia</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="['AAAA', 'BBB']"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Discapacidad en</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="['AAAA', 'BBB']"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>

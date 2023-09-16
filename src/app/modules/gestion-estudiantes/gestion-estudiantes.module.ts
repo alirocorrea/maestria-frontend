@@ -11,6 +11,9 @@ import { CargarEstudiantesComponent } from './components/cargar-estudiantes/carg
 import { MessageService } from 'primeng/api';
 import { EstadosEstudianteComponent } from './components/estados-estudiante/estados-estudiante.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrearEditarEstudianteComponent } from './components/crear-editar-estudiante/crear-editar-estudiante.component';
+import { InformacionPersonalComponent } from './components/crear-editar-estudiante/informacion-personal/informacion-personal.component';
+import { InformacionMaestriaComponent } from './components/crear-editar-estudiante/informacion-maestria/informacion-maestria.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     PrincipalGestionEstudiantesComponent,
     BandejaEstudiantesComponent,
     CargarEstudiantesComponent,
-    EstadosEstudianteComponent
+    EstadosEstudianteComponent,
+    CrearEditarEstudianteComponent,
+    InformacionPersonalComponent,
+    InformacionMaestriaComponent
   ],
   imports: [
     CommonModule,

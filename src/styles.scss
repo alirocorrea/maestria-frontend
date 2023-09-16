@@ -61,3 +61,8 @@ p-menubarsub {
 .text-blue {
     color:  var(--blue);
 }
+
+.label-required:after {
+    content: "*";
+    color: red;
+}

@@ -1,0 +1,22 @@
+<p-panel>
+    <p-header>
+        <b>REGISTRAR ESTUDIANTE</b>
+    </p-header>
+    <app-informacion-personal></app-informacion-personal>
+    <app-informacion-maestria></app-informacion-maestria>
+
+    <p-footer class="flex justify-content-end py-2">
+        <button
+            pButton
+            icon="pi pi-save"
+            label="Registrar estudiante"
+        ></button>
+        <button
+            pButton
+            icon="pi pi-times"
+            label="Cancelar"
+            class="p-button-outlined ml-2"
+            (click)="onCancelar()"
+        ></button>
+    </p-footer>
+</p-panel>

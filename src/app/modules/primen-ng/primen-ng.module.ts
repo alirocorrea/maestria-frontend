@@ -81,7 +81,7 @@ import { TreeModule } from 'primeng/tree';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
-
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [],
@@ -137,6 +137,7 @@ import { VirtualScrollerModule } from 'primeng/virtualscroller';
     PanelMenuModule,
     PasswordModule,
     PickListModule,
+    KeyFilterModule,
     ProgressBarModule,
     RadioButtonModule,
     RatingModule,
