@@ -31,14 +31,14 @@ export class CargarEstudiantesComponent implements OnInit {
     onCargar() {
         this.loading = true;
         setTimeout(() => {
-            this.onReset();
             this.messageService.add(infoMessage(Mensaje.REGISTRO_ESTUDIANTES_EXITOSO))
+            this.onReset();
         }, 1000);
     }
 
     onReset() {
         this.file = null
-        this.loading = false;
         this.labelFile = null;
+        this.loading = false;
     }
 }

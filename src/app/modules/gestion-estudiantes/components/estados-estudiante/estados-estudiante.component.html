@@ -1,0 +1,193 @@
+<p-panel>
+    <p-header>
+        <b>ESTADOS DEL ESTUDIANTE</b>
+    </p-header>
+    <br />
+    <!-- Datos del estudiante -->
+    <div class="grid">
+        <div class="col-4 text-right font-medium">
+            <p><b>Datos del estudiante</b></p>
+        </div>
+        <div class="col-8"></div>
+        <div class="col-4 text-right font-medium">
+            <p>Código:</p>
+        </div>
+        <div class="col-8">
+            <p>1061791135</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Nombres:</p>
+        </div>
+        <div class="col-8">
+            <p>Aliro Antonio</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Apellidos:</p>
+        </div>
+        <div class="col-8">
+            <p>Correa Gutierrez</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Director:</p>
+        </div>
+        <div class="col-8">
+            <p>Martha Mendoza</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Co director:</p>
+        </div>
+        <div class="col-8">
+            <p>Carlos Cobos</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Semestre académico:</p>
+        </div>
+        <div class="col-8">
+            <p>4</p>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Estado:</p>
+        </div>
+        <div class="col-8 flex">
+            <div class="field-radiobutton mr-3">
+                <p-radioButton
+                    name="estado"
+                    value="ACTIVO"
+                    [(ngModel)]="estadoRadioButton"
+                ></p-radioButton>
+                <label>Activo</label>
+            </div>
+            <div class="field-radiobutton mr-3">
+                <p-radioButton
+                    name="estado"
+                    value="FINALIZO"
+                    [(ngModel)]="estadoRadioButton"
+                ></p-radioButton>
+                <label>Finalizo la maestria</label>
+            </div>
+            <div class="field-radiobutton mr-3">
+                <p-radioButton
+                    name="estado"
+                    value="RETIRADO"
+                    [(ngModel)]="estadoRadioButton"
+                ></p-radioButton>
+                <label>Retirado</label>
+            </div>
+            <div class="field-radiobutton">
+                <p-radioButton
+                    name="estado"
+                    value="ESTADO"
+                    [(ngModel)]="estadoRadioButton"
+                ></p-radioButton>
+                <label>En suspención</label>
+            </div>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Semestre académico:</p>
+        </div>
+        <div class="col-8">
+            <p-inputNumber
+                class="p-inputtext-sm"
+                [showButtons]="true"
+                [min]="1"
+                [max]="10"
+            ></p-inputNumber>
+        </div>
+        <div class="col-4 text-right font-medium">
+            <p>Semestre financiero:</p>
+        </div>
+        <div class="col-8">
+            <p-inputNumber
+                class="p-inputtext-sm"
+                [showButtons]="true"
+                [min]="1"
+                [max]="10"
+            ></p-inputNumber>
+        </div>
+    </div>
+    <br />
+
+    <!-- Porrogas o Supenciones-->
+    <div class="grid">
+        <div class="col-4 text-right">
+            <p><b>Prórrogas/suspensiones de término</b></p>
+        </div>
+        <div class="col-7">
+            <!-- Tabla -->
+            <p-table
+                [loading]="loading"
+                styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
+                [breakpoint]="'800px'"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col">Fecha prórroga o suspención</th>
+                        <th scope="col">No. resolución</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </ng-template>
+                <!-- Contenido  -->
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{ product.code }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.quantity }}</td>
+                    </tr>
+                </ng-template>
+                <!-- Mensaje sin registros -->
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="4">No se encontraron registros</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <br />
+
+    <!-- Reingresos -->
+    <div class="grid">
+        <div class="col-4 text-right">
+            <p><b>Reingresos</b></p>
+        </div>
+        <div class="col-7">
+            <!-- Tabla -->
+            <p-table
+                [loading]="loading"
+                styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
+                [breakpoint]="'800px'"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col">Fecha de reingreso</th>
+                        <th scope="col">No. resolución</th>
+                        <th scope="col">Semestre financiero</th>
+                        <th scope="col">Semestre académico</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                </ng-template>
+                <!-- Contenido  -->
+                <ng-template pTemplate="body" let-product>
+                    <tr>
+                        <td>{{ product.code }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.category }}</td>
+                        <td>{{ product.quantity }}</td>
+                    </tr>
+                </ng-template>
+                <!-- Mensaje sin registros -->
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="6">No se encontraron registros</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <br />
+</p-panel>

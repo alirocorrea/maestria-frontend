@@ -3,6 +3,7 @@
         <input
             pInputText
             type="text"
+            id="labelFile"
             class="p-inputtext-sm w-full"
             placeholder="Seleccione un archivo con formato .xlsx"
             [disabled]="true"
@@ -15,6 +16,7 @@
             icon="pi pi-file-excel"
             styleClass="p-button-sm w-full p-button-outlined"
             (click)="fileInput.click()"
+            [disabled]="loading"
         ></p-button>
         <input
             #fileInput

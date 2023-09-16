@@ -9,19 +9,23 @@ import { BandejaEstudiantesComponent } from './components/bandeja-estudiantes/ba
 import { EstudiantesService } from './services/estudiantes.service';
 import { CargarEstudiantesComponent } from './components/cargar-estudiantes/cargar-estudiantes.component';
 import { MessageService } from 'primeng/api';
+import { EstadosEstudianteComponent } from './components/estados-estudiante/estados-estudiante.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     PrincipalGestionEstudiantesComponent,
     BandejaEstudiantesComponent,
-    CargarEstudiantesComponent
+    CargarEstudiantesComponent,
+    EstadosEstudianteComponent
   ],
   imports: [
     CommonModule,
     PrimenNgModule,
     SharedModule,
-    GestionEstudiantesRoutingModule
+    GestionEstudiantesRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [
     MessageService,

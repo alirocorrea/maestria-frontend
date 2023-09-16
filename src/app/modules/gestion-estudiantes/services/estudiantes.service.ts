@@ -18,11 +18,4 @@ export class EstudiantesService {
         { nombre: 'Estudiante 2', correo: 'estudiante2@example.com', id: 2 }
       ]).pipe(delay(1000));;
   }
-
-  fetch(): Observable<any> {
-    return this.http.get<any>(
-        backend("/"),
-        { headers: getHeaders() }
-    );
-  }
 }
