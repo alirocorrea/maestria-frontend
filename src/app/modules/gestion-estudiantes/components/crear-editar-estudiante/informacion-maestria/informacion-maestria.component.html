@@ -1,1 +1,339 @@
-<p>informacion-maestria works!</p>
+<br />
+
+<!-- Informacion Mestria -->
+<div class="col-4 text-right font-medium">
+    <p><b>Información sobre la maestria actual</b></p>
+</div>
+<br />
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Estado</label>
+    </div>
+    <div class="col-8 flex aling-items-center">
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="ACTIVO"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Activo</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="FINALIZO"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Finalizó la maestria</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="RETIRADO"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Retirado</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="ESTADO"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>En suspención</label>
+        </div>
+    </div>
+</div>
+<div class="field grid mt-4">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Modalidad</label>
+    </div>
+    <div class="col-8 flex aling-items-center">
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="INVESTIGACION"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Investigación</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="PROFUNDIZACION"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Profundización</label>
+        </div>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Estudiante de doctorado</label>
+    </div>
+    <div class="col-8 flex aling-items-center">
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="true"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Si</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="false"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>No</label>
+        </div>
+        <div class="flex align-items-center">
+            <label class="font-medium ml-5 mr-3">Nombre doctorado</label>
+            <input
+                pInputText
+                [maxLength]="250"
+                class="p-inputtext-sm w-20rem"
+            />
+        </div>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Director</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Co director</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Cohorte</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label class="label-required">Periodo de ingreso</label>
+    </div>
+    <div class="col-8">
+        <input
+            pInputText
+            [maxLength]="250"
+            class="p-inputtext-sm w-25rem"
+        />
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Modalidad de ingreso</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="[]"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Semestre académico</label>
+    </div>
+    <div class="col-8">
+        <p-inputNumber
+            class="p-inputtext-sm"
+            [showButtons]="true"
+            [min]="1"
+            [max]="10"
+        ></p-inputNumber>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Semestre financiero</label>
+    </div>
+    <div class="col-8">
+        <p-inputNumber
+            class="p-inputtext-sm"
+            [showButtons]="true"
+            [min]="1"
+            [max]="10"
+        ></p-inputNumber>
+    </div>
+</div>
+<br />
+
+<!-- Beca -->
+<div class="col-4 text-right font-medium">
+    <p><b>Beca</b></p>
+</div>
+<br />
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>La beca es ofrecida por una entidad externa a la Universidad del Cauca</label>
+    </div>
+    <div class="col-8 flex aling-items-center">
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="true"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>Si</label>
+        </div>
+        <div class="field-radiobutton mb-0 mr-3">
+            <p-radioButton
+                name="estado"
+                value="false"
+                [(ngModel)]="estadoRadioButton"
+            ></p-radioButton>
+            <label>No</label>
+        </div>
+        <div class="flex align-items-center">
+            <label class="font-medium ml-5 mr-3">Entidad que ofrece la beca</label>
+            <input
+                pInputText
+                [maxLength]="250"
+                class="p-inputtext-sm w-20rem"
+            />
+        </div>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Tipo</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="[]"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label>Dedicación</label>
+    </div>
+    <div class="col-8">
+        <p-dropdown
+            [options]="[]"
+            placeholder="Seleccione"
+            styleClass="p-inputtext-sm w-25rem"
+        ></p-dropdown>
+    </div>
+</div>
+<br />
+
+<!-- Porrogas o Supenciones-->
+<div class="col-4 text-right font-medium">
+    <p><b>Prórrogas/suspensiones de término</b></p>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label></label>
+    </div>
+    <div class="col-7">
+                <!-- Tabla Prorrogas-->
+                <p-table
+                styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
+                [breakpoint]="'800px'"
+                [value]="[]"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col">Fecha prórroga o suspención</th>
+                        <th scope="col">No. resolución</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col" class="text-center">Opciones</th>
+                    </tr>
+                </ng-template>
+                <!-- Contenido  -->
+                <ng-template pTemplate="body" let-prorroga>
+                    <tr>
+                        <td>{{ prorroga.fecha | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ prorroga.resolucion }}</td>
+                        <td>{{ prorroga.linkDocumento }}</td>
+                        <td></td>
+                    </tr>
+                </ng-template>
+                <!-- Mensaje sin registros -->
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="4">No se encontraron registros</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+    </div>
+</div>
+<br />
+
+<!-- Reingresos -->
+<div class="col-4 text-right font-medium">
+    <p><b>Reingresos</b></p>
+</div>
+<div class="field grid">
+    <div class="col-4 text-right font-medium align-self-center">
+        <label></label>
+    </div>
+    <div class="col-7">
+            <!-- Tabla Reingresos-->
+            <p-table
+                styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
+                [breakpoint]="'800px'"
+                [value]="[]"
+            >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th scope="col">Fecha de reingreso</th>
+                        <th scope="col">No. resolución</th>
+                        <th scope="col">Semestre financiero</th>
+                        <th scope="col">Semestre académico</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col" class="text-center">Opciones</th>
+                    </tr>
+                </ng-template>
+                <!-- Contenido  -->
+                <ng-template pTemplate="body" let-reingreso>
+                    <tr>
+                        <td>{{ reingreso.fecha | date:'dd/MM/yyyy' }}</td>
+                        <td>{{ reingreso.resolucion }}</td>
+                        <td>{{ reingreso.semestreFinanciero }}</td>
+                        <td>{{ reingreso.semestreAcademico }}</td>
+                        <td>{{ reingreso.linkDocumento }}</td>
+                        <td class="text-center"></td>
+                    </tr>
+                </ng-template>
+                <!-- Mensaje sin registros -->
+                <ng-template pTemplate="emptymessage" let-columns>
+                    <tr>
+                        <td [attr.colspan]="6">No se encontraron registros</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+    </div>
+</div>

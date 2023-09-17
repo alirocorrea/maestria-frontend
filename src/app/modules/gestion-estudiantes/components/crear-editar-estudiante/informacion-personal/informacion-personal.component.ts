@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TipoIdentificacion } from '../../../../../core/enums/domain-enum';
+import { TipoIdentificacion, TipoPoblacion } from '../../../../../core/enums/domain-enum';
 import { enumToSelectItems } from 'src/app/core/utils/util';
 import { SelectItem } from 'primeng/api';
 
@@ -11,7 +11,9 @@ import { SelectItem } from 'primeng/api';
 export class InformacionPersonalComponent implements OnInit {
 
     generoRaddioButton: string = 'M';
+
     tiposIndentificacion: SelectItem[] = enumToSelectItems(TipoIdentificacion);
+    tiposPoblacion: SelectItem[] = enumToSelectItems(TipoPoblacion);
 
     constructor() {}
 
