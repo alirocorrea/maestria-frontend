@@ -1,21 +1,33 @@
 <div class="grid">
     <div class="col-8">
-        <input
-            pInputText
-            type="text"
-            id="labelFile"
-            class="p-inputtext-sm w-full"
-            placeholder="Seleccione un archivo con formato .xlsx"
-            [disabled]="true"
-            [value]="labelFile"
-            [ngClass]="{'font-bold': file}"
-        />
+        <div class="p-inputgroup">
+            <input
+                pInputText
+                type="text"
+                id="labelFile"
+                class="p-inputtext-sm w-full"
+                placeholder="Seleccione un archivo con formato .xlsx"
+                [disabled]="true"
+                [value]="labelFile"
+                [ngClass]="{ 'font-bold border-primary': file }"
+            />
+            <button
+                *ngIf="file"
+                type="button"
+                pButton
+                icon="pi pi-times"
+                styleClass="p-button-warn"
+                (click)="onReset()"
+            >
+            </button>
+        </div>
     </div>
     <div class="col-4">
         <p-button
+            *ngIf="!file"
             label="Seleccionar"
             icon="pi pi-file-excel"
-            styleClass="p-button-sm w-full p-button-outlined"
+            styleClass="p-button-outlined w-full h-full"
             (click)="fileInput.click()"
             [disabled]="loading"
         ></p-button>
@@ -27,10 +39,10 @@
             (change)="onFileSelected($event)"
         >
         <p-button
+            *ngIf="file"
             label="Cargar estudiante"
             icon="pi pi-upload"
-            styleClass="p-button-sm w-full mt-2 p-button"
-            [disabled]="!file"
+            styleClass="w-full h-full"
             [loading]="loading"
             (onClick)="onCargar()"
         ></p-button>

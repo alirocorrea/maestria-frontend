@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoIdentificacion } from '../../../../../core/enums/domain-enum';
+import { enumToSelectItems } from 'src/app/core/utils/util';
+import { SelectItem } from 'primeng/api';
 
 @Component({
     selector: 'app-informacion-personal',
@@ -8,8 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class InformacionPersonalComponent implements OnInit {
 
     generoRaddioButton: string = 'M';
+    tiposIndentificacion: SelectItem[] = enumToSelectItems(TipoIdentificacion);
 
     constructor() {}
 
     ngOnInit(): void {}
+
 }
