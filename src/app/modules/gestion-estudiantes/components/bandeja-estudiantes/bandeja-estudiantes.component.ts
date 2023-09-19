@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Estuadiante } from '../../models/estudiante';
+import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { EstadoMastria } from 'src/app/core/enums/domain-enum';
 export class BandejaEstudiantesComponent implements OnInit {
 
     loading: boolean;
-    estudiantes: Estuadiante[] = [];
+    estudiantes: Estudiante[] = [];
 
     constructor(
         private breadcrumbService: BreadcrumbService,

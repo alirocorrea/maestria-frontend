@@ -1,20 +1,19 @@
 export enum EstadoMastria {
-    RETIRADO = "Retirado",
-    ACTIVO = "Activo",
-    MAESTRIA_FINALIZADA ="Finalizó la maestria",
-    EN_SUSPENSION = "En suspención",
+    RETIRADO = 'Retirado',
+    ACTIVO = 'Activo',
+    MAESTRIA_FINALIZADA = 'Finalizó la maestria',
+    EN_SUSPENSION = 'En suspención',
 }
 
 export enum TipoIdentificacion {
-    CEDULA_CIUDADANIA = "Cédula de ciudadanía",
-    PASAPORTE = "Pasaporte",
-    CEDULA_EXTRANJERIA = "Cédula de extranjería",
-    DOCUMENTO_EXTRANJERO = "Documento extranjero",
-    VISA = "Visa",
+    CEDULA_CIUDADANIA = 'Cédula de ciudadanía',
+    PASAPORTE = 'Pasaporte',
+    CEDULA_EXTRANJERIA = 'Cédula de extranjería',
+    DOCUMENTO_EXTRANJERO = 'Documento extranjero',
+    VISA = 'Visa',
 }
 
 export enum TipoPoblacion {
-    NINGUNO = 'Ninguno',
     ADULTO_MAYOR = 'Adulto mayor',
     ARTISTA = 'Artista',
     AUTOR = 'Autor',
@@ -39,16 +38,47 @@ export enum TipoPoblacion {
     TRABAJADOR_URBANO = 'Trabajador urbano',
     TRABAJADOR_RURAL = 'Trabajador rural',
     VICTIMA_VIOLENCIA_ARMADA = 'Victima violencia armada',
-  }
+}
 
-  export enum Etnia {
-    OTRA = "Otra",
-    AFROCOLOMBIANO = "Afrocolombiano",
-    AFRODESCENDIENTE = "Afrodescendiente",
-    INDIGENA = "Indigena",
-    MULATO = "Mulato",
-    NEGRO = "Negro",
-    PALENQUERO_SAN_BACILIO = "PalenqueroSanBacilio",
-    ROM = "Rom",
-    RAIZAL_ARCHIPIELAGO_SAN_ANDRES_PROVIDENCIA = "Raizal archipielago SanAndres Providencia",
-  }
+export enum Etnia {
+    OTRA = 'Otra',
+    AFROCOLOMBIANO = 'Afrocolombiano',
+    AFRODESCENDIENTE = 'Afrodescendiente',
+    INDIGENA = 'Indigena',
+    MULATO = 'Mulato',
+    NEGRO = 'Negro',
+    PALENQUERO_SAN_BACILIO = 'PalenqueroSanBacilio',
+    ROM = 'Rom',
+    RAIZAL_ARCHIPIELAGO_SAN_ANDRES_PROVIDENCIA = 'Raizal archipielago SanAndres Providencia',
+}
+
+export enum Discapacidad {
+    NINGUNO = 'Ninguno',
+    SITEMA_NERVIOSO = 'Sistema nervioso',
+    OJOS = 'Ojos',
+    OIDOS = 'Oidos',
+    OLFATO = 'Olfato',
+    TACTO = 'Tacto',
+    GUSTO = 'Gusto',
+    CARDIORRESPIRATORIO = 'Cardio respiratorio',
+    DEFENSAS = 'Defensas',
+    DIGESTION = 'Digestion',
+    METABOLISMO = 'Metabolismo',
+    HORMONAS = 'Hormonas',
+    SISTEMA_GENITAL = 'Sistema genital',
+    SISTEMA_URINARIO = 'Sistema urinario',
+    SISTEMA_REPRODUCTIVO = 'Sistema reproductivo',
+    MANOS = 'Manos',
+    BRAZOS = 'Brazos',
+    PIERNAS = 'Piernas',
+    PIEL = 'Piel',
+    CABELLO = 'Cabello',
+}
+
+export enum ModalidadIngreso {
+    ADMISION = 'Admision',
+    REINTEGRO = 'Reintegro',
+    CONVENIO = 'Convenio',
+    TRANSFERENCIA = 'Transferencia',
+    HOMOLOGACION = 'Homologacion',
+}
