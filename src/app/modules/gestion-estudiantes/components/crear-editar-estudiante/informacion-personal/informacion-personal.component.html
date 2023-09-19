@@ -16,6 +16,7 @@
                 [maxLength]="50"
                 class="p-inputtext-sm w-25rem"
                 formControlName="codigo"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('codigo').invalid && getFormControl('codigo').touched }"
             />
         </div>
     </div>
@@ -29,6 +30,7 @@
                 placeholder="Seleccione"
                 styleClass="p-inputtext-sm w-25rem"
                 formControlName="tipoIdentificacion"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('tipoIdentificacion').invalid && getFormControl('tipoIdentificacion').touched }"
             ></p-dropdown>
         </div>
     </div>
@@ -39,9 +41,11 @@
         <div class="col-8">
             <input
                 pInputText
+                pKeyFilter="int"
                 [maxLength]="250"
                 class="p-inputtext-sm w-25rem"
                 formControlName="identificacion"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('identificacion').invalid && getFormControl('identificacion').touched }"
             />
         </div>
     </div>
@@ -55,12 +59,14 @@
                 [maxLength]="250"
                 class="p-inputtext-sm w-12rem"
                 formControlName="nombre"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('nombre').invalid && getFormControl('nombre').touched }"
             />
             <input
                 pInputText
                 [maxLength]="250"
                 class="p-inputtext-sm w-12rem ml-3"
                 formControlName="apellido"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('apellido').invalid && getFormControl('apellido').touched }"
             />
         </div>
     </div>
@@ -74,6 +80,7 @@
                 [maxLength]="250"
                 class="p-inputtext-sm w-25rem"
                 formControlName="correoUniversidad"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('correoUniversidad').invalid && getFormControl('correoUniversidad').touched }"
             />
         </div>
     </div>
@@ -134,6 +141,7 @@
                     name="genero"
                     value="MASCULINO"
                     formControlName="genero"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('genero').invalid && getFormControl('genero').touched }"
                 ></p-radioButton>
                 <label>Masculino</label>
             </div>
@@ -142,6 +150,7 @@
                     name="genero"
                     value="FEMENINO"
                     formControlName="genero"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('genero').invalid && getFormControl('genero').touched }"
                 ></p-radioButton>
                 <label>Femenino</label>
             </div>
@@ -150,6 +159,7 @@
                     name="genero"
                     value="OTRO"
                     formControlName="genero"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('genero').invalid && getFormControl('genero').touched }"
                 ></p-radioButton>
                 <label>Otro</label>
             </div>

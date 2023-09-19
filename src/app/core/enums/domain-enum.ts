@@ -8,8 +8,8 @@ export enum EstadoMastria {
 export enum TipoIdentificacion {
     CEDULA_CIUDADANIA = 'Cédula de ciudadanía',
     PASAPORTE = 'Pasaporte',
-    CEDULA_EXTRANJERIA = 'Cédula de extranjería',
-    DOCUMENTO_EXTRANJERO = 'Documento extranjero',
+    CEDULA_EXTRANGERIA = 'Cédula de extranjería',
+    DOCUMENTO_EXTRANGERO = 'Documento extranjero',
     VISA = 'Visa',
 }
 
@@ -81,4 +81,14 @@ export enum ModalidadIngreso {
     CONVENIO = 'Convenio',
     TRANSFERENCIA = 'Transferencia',
     HOMOLOGACION = 'Homologacion',
+}
+
+export enum TipoBeca {
+	PARCIAL = "Parcial",
+    TOTAL = "Total"
+}
+
+export enum DedicacionBeca {
+	TIEMPO_PARCIAL = "Tiempo parcial",
+	TIEMPO_COMPLETO = "Tiempo completo",
 }

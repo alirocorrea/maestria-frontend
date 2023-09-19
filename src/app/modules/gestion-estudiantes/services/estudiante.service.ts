@@ -43,4 +43,11 @@ export class EstudianteService {
             { headers: getHeaders() }
         );
     }
+
+    deleteEstudiante(id: number) {
+        return this.http.delete<any>(
+            backend(`estudiantes/${id}`),
+            { headers: getHeaders() }
+        );
+    }
 }

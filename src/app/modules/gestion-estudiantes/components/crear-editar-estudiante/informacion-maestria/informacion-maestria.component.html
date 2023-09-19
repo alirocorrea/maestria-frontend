@@ -16,14 +16,16 @@
                     name="estadoMaestria"
                     value="ACTIVO"
                     formControlName="estadoMaestria"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('estadoMaestria').invalid && getFormControl('estadoMaestria').touched }"
                 ></p-radioButton>
                 <label>Activo</label>
             </div>
             <div class="field-radiobutton mb-0 mr-3">
                 <p-radioButton
                     name="estadoMaestria"
-                    value="FINALIZO"
+                    value="MAESTRIA_FINALIZADA"
                     formControlName="estadoMaestria"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('estadoMaestria').invalid && getFormControl('estadoMaestria').touched }"
                 ></p-radioButton>
                 <label>Finalizó la maestria</label>
             </div>
@@ -32,14 +34,16 @@
                     name="estadoMaestria"
                     value="RETIRADO"
                     formControlName="estadoMaestria"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('estadoMaestria').invalid && getFormControl('estadoMaestria').touched }"
                 ></p-radioButton>
                 <label>Retirado</label>
             </div>
             <div class="field-radiobutton mb-0 mr-3">
                 <p-radioButton
                     name="estadoMaestria"
-                    value="ESTADO"
+                    value="EN_SUSPENCION"
                     formControlName="estadoMaestria"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('estadoMaestria').invalid && getFormControl('estadoMaestria').touched }"
                 ></p-radioButton>
                 <label>En suspención</label>
             </div>
@@ -55,6 +59,7 @@
                     name="modalidad"
                     value="INVESTIGACION"
                     formControlName="modalidad"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('modalidad').invalid && getFormControl('modalidad').touched }"
                 ></p-radioButton>
                 <label>Investigación</label>
             </div>
@@ -63,12 +68,13 @@
                     name="modalidad"
                     value="PROFUNDIZACION"
                     formControlName="modalidad"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('modalidad').invalid && getFormControl('modalidad').touched }"
                 ></p-radioButton>
                 <label>Profundización</label>
             </div>
         </div>
     </div>
-    <div class="field grid">
+    <div class="field grid h-36px">
         <div class="col-4 text-right font-medium align-self-center">
             <label class="label-required">Estudiante de doctorado</label>
         </div>
@@ -78,6 +84,7 @@
                     name="esEstudianteDoctorado"
                     value="true"
                     formControlName="esEstudianteDoctorado"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('esEstudianteDoctorado').invalid && getFormControl('esEstudianteDoctorado').touched }"
                 ></p-radioButton>
                 <label>Si</label>
             </div>
@@ -86,11 +93,12 @@
                     name="esEstudianteDoctorado"
                     value="false"
                     formControlName="esEstudianteDoctorado"
+                    [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('esEstudianteDoctorado').invalid && getFormControl('esEstudianteDoctorado').touched }"
                 ></p-radioButton>
                 <label>No</label>
             </div>
-            <div class="flex align-items-center">
-                <label class="font-medium ml-5 mr-3">Nombre doctorado</label>
+            <div class="flex align-items-center" *ngIf="getFormControl('esEstudianteDoctorado').value === 'true'">
+                <label class="font-medium ml-2 mr-3">Nombre doctorado</label>
                 <input
                     pInputText
                     [maxLength]="250"
@@ -110,6 +118,7 @@
                 [maxLength]="250"
                 class="p-inputtext-sm w-25rem"
                 formControlName="idDirector"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('idDirector').invalid && getFormControl('idDirector').touched }"
             />
         </div>
     </div>
@@ -133,9 +142,11 @@
         <div class="col-8">
             <input
                 pInputText
-                [maxLength]="250"
+                pKeyFilter="int"
+                [maxLength]="25"
                 class="p-inputtext-sm w-25rem"
                 formControlName="cohorte"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('cohorte').invalid && getFormControl('cohorte').touched }"
             />
         </div>
     </div>
@@ -149,6 +160,7 @@
                 [maxLength]="250"
                 class="p-inputtext-sm w-25rem"
                 formControlName="periodoIngreso"
+                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('periodoIngreso').invalid && getFormControl('periodoIngreso').touched }"
             />
         </div>
     </div>
@@ -201,7 +213,7 @@
         <p><b>Beca</b></p>
     </div>
     <br />
-    <div class="field grid">
+    <div class="field grid h-36px">
         <div class="col-4 text-right font-medium align-self-center">
             <label>La beca es ofrecida por una entidad externa a la Universidad del Cauca</label>
         </div>
@@ -222,8 +234,8 @@
                 ></p-radioButton>
                 <label>No</label>
             </div>
-            <div class="flex align-items-center">
-                <label class="font-medium ml-5 mr-3">Entidad que ofrece la beca</label>
+            <div class="flex align-items-center" *ngIf="getFormControl('esOfrecidaPorUnicauca').value === 'true'">
+                <label class="font-medium ml-2 mr-3">Entidad que ofrece la beca</label>
                 <input
                     pInputText
                     [maxLength]="250"
@@ -239,7 +251,7 @@
         </div>
         <div class="col-8">
             <p-dropdown
-                [options]="[]"
+                [options]="tiposBeca"
                 placeholder="Seleccione"
                 styleClass="p-inputtext-sm w-25rem"
                 formControlName="tipo"
@@ -252,7 +264,7 @@
         </div>
         <div class="col-8">
             <p-dropdown
-                [options]="[]"
+                [options]="dedicacionesBeca"
                 placeholder="Seleccione"
                 styleClass="p-inputtext-sm w-25rem"
                 formControlName="dedicacion"

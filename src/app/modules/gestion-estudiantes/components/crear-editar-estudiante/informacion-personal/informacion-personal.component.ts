@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Discapacidad, Etnia, TipoIdentificacion, TipoPoblacion } from '../../../../../core/enums/domain-enum';
 import { enumToSelectItems } from 'src/app/core/utils/util';
 import { SelectItem } from 'primeng/api';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-informacion-personal',
@@ -35,7 +35,7 @@ export class InformacionPersonalComponent implements OnInit {
             "identificacion": ['', Validators.required],
             "nombre": ['', Validators.required],
             "apellido": ['', Validators.required],
-            "correoUniversidad": ['', Validators.required],
+            "correoUniversidad": ['', [Validators.required, Validators.email]],
             "ciudadResidencia": [''],
             "tituloPregrado": [''],
             "telefono": [''],
@@ -48,4 +48,7 @@ export class InformacionPersonalComponent implements OnInit {
         this.formReady.emit(this.personalForm);
     }
 
+    getFormControl(formControlName: string): FormControl {
+        return this.personalForm.get(formControlName) as FormControl;
+    }
 }

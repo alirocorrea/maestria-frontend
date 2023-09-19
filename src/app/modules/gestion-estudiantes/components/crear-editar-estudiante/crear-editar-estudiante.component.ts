@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
+import { MessageService } from 'primeng/api';
+import { errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
+import { Mensaje } from 'src/app/core/enums/enums';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -18,6 +21,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
     constructor(
         private breadcrumbService: BreadcrumbService,
         private estudianteService: EstudianteService,
+        private messageService: MessageService,
         private router:Router,
         private fb: FormBuilder,
     ) {}
@@ -43,6 +47,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
         if(this.form.invalid) {
             this.personalForm.markAllAsTouched();
             this.maestriaForm.markAllAsTouched();
+            this.messageService.clear();
+            this.messageService.add(warnMessage(Mensaje.REGISTRE_CAMPOS_OBLIGATORIOS));
             return;
         }
 

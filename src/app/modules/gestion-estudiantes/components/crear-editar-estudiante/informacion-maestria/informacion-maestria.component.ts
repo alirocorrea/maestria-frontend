@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { ModalidadIngreso } from 'src/app/core/enums/domain-enum';
+import { DedicacionBeca, ModalidadIngreso, TipoBeca } from 'src/app/core/enums/domain-enum';
 import { enumToSelectItems } from 'src/app/core/utils/util';
 
 @Component({
@@ -14,6 +14,9 @@ export class InformacionMaestriaComponent implements OnInit {
     @Output() formReady = new EventEmitter<FormGroup>();
 
     modalidadesIngreso: SelectItem[] = enumToSelectItems(ModalidadIngreso);
+    tiposBeca: SelectItem[] = enumToSelectItems(TipoBeca);
+    dedicacionesBeca: SelectItem[] = enumToSelectItems(DedicacionBeca);
+
     maestriaForm: FormGroup;
 
     constructor(
@@ -28,7 +31,7 @@ export class InformacionMaestriaComponent implements OnInit {
         this.maestriaForm = this.fb.group({
             estadoMaestria: ['', Validators.required],
             modalidad: ['', Validators.required],
-            esEstudianteDoctorado: [false, Validators.required],
+            esEstudianteDoctorado: ['', Validators.required],
             tituloDoctorado: [''],
             idDirector: ['',  Validators.required],
             idCodirector: [''],
@@ -45,5 +48,9 @@ export class InformacionMaestriaComponent implements OnInit {
         });
 
         this.formReady.emit(this.maestriaForm);
+    }
+
+    getFormControl(formControlName: string): FormControl {
+        return this.maestriaForm.get(formControlName) as FormControl;
     }
 }

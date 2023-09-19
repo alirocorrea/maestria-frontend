@@ -4,6 +4,9 @@ import { EstudianteService } from '../../services/estudiante.service';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Router } from '@angular/router';
 import { EstadoMastria } from 'src/app/core/enums/domain-enum';
+import { MessageService } from 'primeng/api';
+import { infoMessage } from 'src/app/core/utils/message-util';
+import { Mensaje } from 'src/app/core/enums/enums';
 
 @Component({
     selector: 'app-bandeja-estudiantes',
@@ -18,6 +21,7 @@ export class BandejaEstudiantesComponent implements OnInit {
     constructor(
         private breadcrumbService: BreadcrumbService,
         private estudianteService: EstudianteService,
+        private messageService: MessageService,
         private router: Router,
     ) {}
 
@@ -54,5 +58,14 @@ export class BandejaEstudiantesComponent implements OnInit {
 
     onVerEstados(id: number) {
         this.router.navigate(['estudiantes/estados', id]);
+    }
+
+    onDelete(id: number) {
+        this.estudianteService.deleteEstudiante(id).subscribe({
+            next: () => {
+                this.messageService.add(infoMessage(Mensaje.ESTUDIANTE_ELIMINADO_CORRECTAMENTE));
+                this.listEstudiantes();
+            }
+        });
     }
 }

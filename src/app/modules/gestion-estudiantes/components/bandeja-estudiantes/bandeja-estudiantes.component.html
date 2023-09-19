@@ -46,6 +46,8 @@
         breakpoint="768px"
         styleClass="p-datatable-gridlines p-datatable-striped"
         [globalFilterFields]="['codigo','persona.nombre', 'persona.apellido', 'persona.correoElectronico']"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="{first} - {last} de {totalRecords}"
     >
         <ng-template pTemplate="header">
             <tr>
@@ -87,6 +89,7 @@
                         type="button"
                         icon="pi pi-trash"
                         class="p-button-rounded p-button-text p-button-danger"
+                        (click)="onDelete(estudiante.id)"
                     ></button>
                 </td>
             </tr>
