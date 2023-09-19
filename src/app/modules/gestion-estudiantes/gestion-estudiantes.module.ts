@@ -8,7 +8,7 @@ import { PrincipalGestionEstudiantesComponent } from './pages/principal-gestion-
 import { BandejaEstudiantesComponent } from './components/bandeja-estudiantes/bandeja-estudiantes.component';
 import { EstudianteService } from './services/estudiante.service';
 import { CargarEstudiantesComponent } from './components/cargar-estudiantes/cargar-estudiantes.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { EstadosEstudianteComponent } from './components/estados-estudiante/estados-estudiante.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CrearEditarEstudianteComponent } from './components/crear-editar-estudiante/crear-editar-estudiante.component';
@@ -35,6 +35,7 @@ import { InformacionMaestriaComponent } from './components/crear-editar-estudian
   ],
   providers: [
     MessageService,
+    ConfirmationService,
     EstudianteService,
   ]
 })
