@@ -19,7 +19,7 @@
             <p>Nombres:</p>
         </div>
         <div class="col-8">
-            <p>{{ estudiante.nombre}} </p>
+            <p>{{ estudiante.nombre }} </p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Apellidos:</p>
@@ -37,68 +37,31 @@
             <p>Co director:</p>
         </div>
         <div class="col-8">
-            <p>{{ estudiante.codirector }}</p>
+            <p [ngClass]="{'text-400': !estudiante.codirector }">
+                {{ estudiante.codirector | emptyLabel }}
+            </p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Estado:</p>
         </div>
         <div class="col-8 flex">
-            <div class="field-radiobutton mr-3">
-                <p-radioButton
-                    name="estado"
-                    value="ACTIVO"
-                    [(ngModel)]="estudiante.estadoMaestria"
-                ></p-radioButton>
-                <label>Activo</label>
-            </div>
-            <div class="field-radiobutton mr-3">
-                <p-radioButton
-                    name="estado"
-                    value="MAESTRIA_FINALIZADA"
-                    [(ngModel)]="estudiante.estadoMaestria"
-                ></p-radioButton>
-                <label>Finalizó la maestria</label>
-            </div>
-            <div class="field-radiobutton mr-3">
-                <p-radioButton
-                    name="estado"
-                    value="RETIRADO"
-                    [(ngModel)]="estudiante.estadoMaestria"
-                ></p-radioButton>
-                <label>Retirado</label>
-            </div>
-            <div class="field-radiobutton">
-                <p-radioButton
-                    name="estado"
-                    value="EN_SUSPENCION"
-                    [(ngModel)]="estudiante.estadoMaestria"
-                ></p-radioButton>
-                <label>En suspención</label>
-            </div>
+            <p>{{ getEstadoMaestria(estudiante.estadoMaestria) }}</p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Semestre académico:</p>
         </div>
         <div class="col-8">
-            <p-inputNumber
-                class="p-inputtext-sm"
-                [showButtons]="true"
-                [min]="1"
-                [max]="10"
-                [(ngModel)]="estudiante.semestreAcademico"
-            ></p-inputNumber>
+            <p [ngClass]="{'text-400': !estudiante.semestreAcademico }">
+                {{ estudiante.semestreAcademico | emptyLabel }}
+            </p>
         </div>
         <div class="col-4 text-right font-medium">
             <p>Semestre financiero:</p>
         </div>
         <div class="col-8">
-            <p-inputNumber
-                class="p-inputtext-sm"
-                [showButtons]="true"
-                [min]="1"
-                [max]="10"
-                [(ngModel)]="estudiante.semestreFinanciero"
-            ></p-inputNumber>
+            <p [ngClass]="{'text-400': !estudiante.semestreFinanciero }">
+                {{ estudiante.semestreFinanciero | emptyLabel }}
+            </p>
         </div>
     </div>
     <br />
@@ -121,7 +84,6 @@
                         <th scope="col">Fecha prórroga o suspención</th>
                         <th scope="col">No. resolución</th>
                         <th scope="col">Documento</th>
-                        <th scope="col">Opciones</th>
                     </tr>
                 </ng-template>
                 <!-- Contenido  -->
@@ -130,7 +92,6 @@
                         <td>{{ prorroga.fecha | date:'dd/MM/yyyy' }}</td>
                         <td>{{ prorroga.resolucion }}</td>
                         <td>{{ prorroga.linkDocumento }}</td>
-                        <td></td>
                     </tr>
                 </ng-template>
                 <!-- Mensaje sin registros -->
@@ -165,7 +126,6 @@
                         <th scope="col">Semestre financiero</th>
                         <th scope="col">Semestre académico</th>
                         <th scope="col">Documento</th>
-                        <th scope="col">Opciones</th>
                     </tr>
                 </ng-template>
                 <!-- Contenido  -->
@@ -176,7 +136,6 @@
                         <td>{{ reingreso.semestreFinanciero }}</td>
                         <td>{{ reingreso.semestreAcademico }}</td>
                         <td>{{ reingreso.linkDocumento }}</td>
-                        <td></td>
                     </tr>
                 </ng-template>
                 <!-- Mensaje sin registros -->

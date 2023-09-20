@@ -3,6 +3,7 @@ import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadc
 import { EstudianteService } from '../../services/estudiante.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EstadoEstudiante } from '../../models/estado-estudiante';
+import { EstadoMastria } from 'src/app/core/enums/domain-enum';
 @Component({
     selector: 'app-estados-estudiante',
     templateUrl: './estados-estudiante.component.html',
@@ -39,6 +40,10 @@ export class EstadosEstudianteComponent implements OnInit {
         this.estudianteService.getEstadoEstudiante(id).subscribe({
             next: (response) => this.estudiante = response,
         });
+    }
+
+    getEstadoMaestria(codigo: string) {
+        return EstadoMastria[codigo]
     }
 
     onVolver() {
