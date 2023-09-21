@@ -1,0 +1,308 @@
+<div class="card">
+    <div class="mb-4">
+        <p class="text-xl font-bold mb-0">
+            <i class="pi pi-check-square mr-2"></i>Datos de la solicitud
+        </p>
+        <p>Complete los datos requeridos para presentar la solicitud</p>
+    </div>
+
+    <!-- Formulario para agragar información Personal -->
+    <p-fieldset class="" legend="Información personal">
+        <div class="grid">
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="nombres"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.nombres"
+                    />
+                    <label for="nombres">Nombres</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="apellidos"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.apellidos"
+                    />
+                    <label for="apellidos">Apellidos</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-6">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="email"
+                        autocomplete="email"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.correo"
+                    />
+                    <label for="email">Correo electronico</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="cell"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.celular"
+                    />
+                    <label for="cell">Celular</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="codacad"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.codAcademico"
+                    />
+                    <label for="codacad">Código academico</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <p-dropdown
+                        inputId="tipoid"
+                        [autoDisplayFirst]="false"
+                        [options]="tiposIdentificacion"
+                        [(ngModel)]="radicar.solicitante.tipoIdentificacion"
+                        [style]="{ width: '100%' }"
+                    ></p-dropdown>
+                    <label for="tipoid">Tipo identificación</label>
+                </span>
+            </div>
+            <div class="col-12 lg:col-3">
+                <span class="p-float-label mt-3">
+                    <input
+                        class="w-full"
+                        id="numid"
+                        type="text"
+                        pInputText
+                        [(ngModel)]="radicar.solicitante.identificacion"
+                    />
+                    <label for="numid">Número de identificación</label>
+                </span>
+            </div>
+        </div>
+    </p-fieldset>
+
+    <!-- Formulario para agragar asignaturas homologación postgrados -->
+    <div
+        class="mt-4"
+        *ngIf="
+            ['HO_ASIG_POS'].includes(
+                radicar.tipoSolicitudEscogida.codigoSolicitud
+            )
+        "
+    >
+        <p-fieldset legend="Homologaciones">
+            <div class="grid">
+                <div class="col-12 lg:col-6">
+                    <span class="p-float-label mt-3">
+                        <input
+                            class="w-full"
+                            id="programa"
+                            type="text"
+                            pInputText
+                            [(ngModel)]="
+                                radicar.datosInstitucionHomologar.programa
+                            "
+                        />
+                        <label for="programa"
+                            >Programa de postgado de origen</label
+                        >
+                    </span>
+                </div>
+                <div class="col-12 lg:col-6">
+                    <span class="p-float-label mt-3">
+                        <input
+                            class="w-full"
+                            id="institucion"
+                            type="text"
+                            pInputText
+                            [(ngModel)]="
+                                radicar.datosInstitucionHomologar.institucion
+                            "
+                        />
+                        <label for="institucion"
+                            >Institucián educativa de origen</label
+                        >
+                    </span>
+                </div>
+            </div>
+
+            <div class="mt-4 mb-5"><p-divider type="dashed"></p-divider></div>
+
+            <div
+                class="grid"
+                *ngFor="
+                    let instancia of radicar.instanciasAsignHomologar;
+                    let i = index
+                "
+            >
+                <div class="col-11">
+                    <app-asignaturahomologar
+                        [indice]="i"
+                    ></app-asignaturahomologar>
+                </div>
+
+                <div class="col-1 mt-3">
+                    <button
+                        pButton
+                        icon="pi pi-times"
+                        (click)="eliminarInstancia(i)"
+                        type="button"
+                        class="p-button-danger"
+                    ></button>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button
+                    pButton
+                    type="button"
+                    (click)="agregarInstancia()"
+                    label="Agregar otra asignatura"
+                    icon="pi pi-plus"
+                    class="p-button-outlined"
+                ></button>
+            </div>
+        </p-fieldset>
+    </div>
+
+    <!-- Formulario para seleccionar asignaturas para Adición -->
+    <div
+        class="mt-4"
+        *ngIf="
+            ['AD_ASIG'].includes(radicar.tipoSolicitudEscogida.codigoSolicitud)
+        "
+    >
+        <p-fieldset class="" legend="Adiciones">
+            <div class="grid">
+                <div class="col-12">
+                    <span class="p-float-label mt-3">
+                        <p-multiSelect
+                            inputId="adasig"
+                            [options]="ofertaAcademica"
+                            optionLabel="nombre"
+                            [(ngModel)]="radicar.asignaturasAdicCancel"
+                            [filter]="false"
+                            [style]="{ width: '100%' }"
+                            [maxSelectedLabels]="3"
+                            [selectedItemsLabel]="'{0} Materias seleccionadas'"
+                        >
+                            ></p-multiSelect
+                        >
+                        <label for="adasig">Materias a adicionar</label>
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+    </div>
+
+    <!-- Formulario para seleccionar asignaturas para Cancelación -->
+    <div
+        class="mt-4"
+        *ngIf="
+            ['CA_ASIG'].includes(radicar.tipoSolicitudEscogida.codigoSolicitud)
+        "
+    >
+        <p-fieldset class="" legend="Cancelaciones">
+            <div class="grid">
+                <div class="col-12">
+                    <span class="p-float-label mt-3">
+                        <p-multiSelect
+                            inputId="cancasig"
+                            [options]="ofertaAcademica"
+                            optionLabel="nombre"
+                            [(ngModel)]="radicar.asignaturasAdicCancel"
+                            [filter]="false"
+                            [style]="{ width: '100%' }"
+                            [maxSelectedLabels]="3"
+                            [selectedItemsLabel]="'{0} Materias seleccionadas'"
+                        >
+                            ></p-multiSelect
+                        >
+                        <label for="cancasig">Materias a cancelar</label>
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+    </div>
+
+    <!-- Formulario para incluir el motivo de la solicitud -->
+    <div
+        class="mt-4"
+        *ngIf="
+            ['CA_ASIG', 'PR_EXAM', 'AP_SEME', 'CU_ASIG'].includes(
+                radicar.tipoSolicitudEscogida.codigoSolicitud
+            )
+        "
+    >
+        <p-fieldset legend="Motivo">
+            <div class="grid">
+                <div class="col-12">
+                    <span class="p-float-label mt-3">
+                        <textarea
+                            id="motivo"
+                            [(ngModel)]="radicar.motivoDeSolicitud"
+                            [rows]="5"
+                            pInputTextarea
+                            class="w-full"
+                        ></textarea>
+                        <label for="motivo"
+                            >La presente solicitud obedece a</label
+                        >
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+    </div>
+
+    <!-- Formulario Seleccion de un tutor -->
+    <div class="mt-4">
+        <p-fieldset legend="Tutor">
+            <div class="grid">
+                <div class="col-12">
+                    <span class="p-float-label mt-3">
+                        <p-dropdown
+                            inputId="tutor"
+                            [autoDisplayFirst]="false"
+                            [options]="listadoTutores"
+                            [(ngModel)]="radicar.tutor"
+                            optionLabel="nombre"
+                            [style]="{ width: '100%' }"
+                        ></p-dropdown>
+                        <label for="tutor">Tutor que avala solicitud</label>
+                    </span>
+                </div>
+            </div>
+        </p-fieldset>
+    </div>
+
+    <div class="grid grid-nogutter mt-4 justify-content-end">
+        <p-button
+            class="mr-2"
+            label="Atras"
+            (click)="navigateToBack()"
+            icon="pi pi-angle-left"
+        ></p-button>
+        <p-button
+            label="Siguiente"
+            (click)="navigateToNext()"
+            icon="pi pi-angle-right"
+            iconPos="right"
+        ></p-button>
+    </div>
+</div>

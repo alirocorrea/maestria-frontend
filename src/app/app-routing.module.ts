@@ -7,20 +7,37 @@ import { AccessComponent } from './core/components/access/access.component';
 import { HomeComponent } from './core/components/home/home.component';
 @NgModule({
     imports: [
-        RouterModule.forRoot([
-            {
-                path: '', component: AppMainComponent,
-                children: [
-                    {path: '', component: HomeComponent},
-                ],
-            },
-            {path:'pages/error', component: ErrorComponent},
-            {path:'pages/notfound', component: NotfoundComponent},
-            {path:'pages/access', component: AccessComponent},
-            {path: '**', redirectTo: 'pages/notfound'},
-        ], {scrollPositionRestoration: 'enabled', anchorScrolling:'enabled'})
+        RouterModule.forRoot(
+            [
+                {
+                    path: '',
+                    component: AppMainComponent,
+                    children: [
+                        { path: '', component: HomeComponent },
+                        {
+                            path: 'estudiantes',
+                            loadChildren: () =>
+                                import(
+                                    './modules/gestion-estudiantes/gestion-estudiantes.module'
+                                ).then((m) => m.GestionEstudiantesModule),
+                        },
+                        {
+                            path: 'gestionsolicitudes',
+                            loadChildren: () =>
+                                import(
+                                    './modules/gestion-solicitudes/gestion-solicitudes.module'
+                                ).then((m) => m.GestionSolicitudesModule),
+                        },
+                    ],
+                },
+                { path: 'pages/error', component: ErrorComponent },
+                { path: 'pages/notfound', component: NotfoundComponent },
+                { path: 'pages/access', component: AccessComponent },
+                { path: '**', redirectTo: 'pages/notfound' },
+            ],
+            { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }
+        ),
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

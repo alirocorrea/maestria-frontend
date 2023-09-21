@@ -19,6 +19,7 @@ import { AppConfigComponent } from './core/components/config/app.config.componen
 import { PrimenNgModule } from './modules/primen-ng/primen-ng.module';
 import { HomeComponent } from './core/components/home/home.component';
 import { SharedModule } from 'primeng/api';
+import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-estudiantes.module';
 
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { SharedModule } from 'primeng/api';
         BrowserAnimationsModule,
         PrimenNgModule,
         SharedModule,
+        GestionEstudiantesModule,
     ],
     declarations: [
         AppComponent,
