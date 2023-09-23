@@ -21,6 +21,13 @@ import { HomeComponent } from './core/components/home/home.component';
                                     './modules/gestion-estudiantes/gestion-estudiantes.module'
                                 ).then((m) => m.GestionEstudiantesModule),
                         },
+                        {
+                            path: 'docentes',
+                            loadChildren: () =>
+                                import(
+                                    './modules/gestion-docentes/gestion-docentes.module'
+                                ).then((m) => m.GestionDocentesModule),
+                        },
                     ],
                 },
                 { path: 'pages/error', component: ErrorComponent },

@@ -22,6 +22,8 @@ import { MessageService, SharedModule } from 'primeng/api';
 import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-estudiantes.module';
 import { AppBreadcrumbComponent } from './core/components/breadcrumb/app.breadcrumb.component';
 import { BreadcrumbService } from './core/components/breadcrumb/app.breadcrumb.service';
+import { BandejaDocentesComponent } from './modules/gestion-docentes/components/bandeja-docentes/bandeja-docentes.component';
+import { CargarDocentesComponent } from './modules/gestion-docentes/components/cargar-docentes/cargar-docentes.component';
 
 @NgModule({
     imports: [
@@ -44,7 +46,9 @@ import { BreadcrumbService } from './core/components/breadcrumb/app.breadcrumb.s
         AppMenuitemComponent,
         AppConfigComponent,
         AppBreadcrumbComponent,
-        HomeComponent
+        HomeComponent,
+        BandejaDocentesComponent,
+        CargarDocentesComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
