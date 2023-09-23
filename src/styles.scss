@@ -70,3 +70,13 @@ p-menubarsub {
 .h-36px {
     height: 36px;
 }
+
+.footer-modal {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+}
+
+.footer-modal .p-button {
+    margin-left: 0.5rem;
+}

@@ -113,13 +113,17 @@
             <label class="label-required">Director</label>
         </div>
         <div class="col-8">
-            <input
-                pInputText
-                [maxLength]="250"
-                class="p-inputtext-sm w-25rem"
-                formControlName="idDirector"
-                [ngClass]="{ 'ng-invalid ng-dirty': getFormControl('idDirector').invalid && getFormControl('idDirector').touched }"
-            />
+            <div class="p-inputgroup w-25rem">
+                <div class="p-inputtext p-inputtext-sm border-noround-right">
+                    {{ director?.value?.nombre }} {{ director?.value?.apellido }}
+                </div>
+                <button
+                    type="button"
+                    pButton
+                    label="Seleccionar"
+                    (click)="onSeleccionarDirector()"
+                ></button>
+            </div>
         </div>
     </div>
     <div class="field grid">
@@ -127,12 +131,17 @@
             <label>Co director</label>
         </div>
         <div class="col-8">
-            <input
-                pInputText
-                [maxLength]="250"
-                class="p-inputtext-sm w-25rem"
-                formControlName="idCodirector"
-            />
+            <div class="p-inputgroup w-25rem">
+                <div class="p-inputtext p-inputtext-sm border-noround-right">
+                    {{ codirector?.value?.nombre }} {{ codirector?.value?.apellido }}
+                </div>
+                <button
+                    type="button"
+                    pButton
+                    label="Seleccionar"
+                    (click)="onSeleccionarCodirector()"
+                ></button>
+            </div>
         </div>
     </div>
     <div class="field grid">

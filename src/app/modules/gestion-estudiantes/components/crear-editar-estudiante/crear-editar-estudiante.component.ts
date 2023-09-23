@@ -4,8 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
-import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
-import { errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { warnMessage } from 'src/app/core/utils/message-util';
 import { Mensaje } from 'src/app/core/enums/enums';
 import { confirmMessage } from '../../../../core/utils/message-util';
 
@@ -74,12 +74,12 @@ export class CrearEditarEstudianteComponent implements OnInit {
 
     onCancel() {
         if(this.form.pristine) {
-            this.router.navigate(['estudiantes']);
+            this.redirectToEstudiantes();
             return;
         }
         this.confirmationService.confirm({
             ...confirmMessage(Mensaje.CONFIRMAR_SALIR_SIN_GUARDAR),
-            accept: () => this.router.navigate(['estudiantes']),
+            accept: () => this.redirectToEstudiantes(),
         });
     }
 
@@ -91,10 +91,25 @@ export class CrearEditarEstudianteComponent implements OnInit {
             this.messageService.add(warnMessage(Mensaje.REGISTRE_CAMPOS_OBLIGATORIOS));
             return;
         }
+        this.editMode ? this.updateEstudiante() : this.createEstudiante();
+    }
 
+    redirectToEstudiantes() {
+        this.router.navigate(['estudiantes'])
+    }
+
+    createEstudiante() {
         const request = this.mapRequest();
         this.estudianteService.createEstudiante(request).subscribe({
-            next: () => this.onCancel()
+            next: () => this.redirectToEstudiantes()
+        });
+    }
+
+    updateEstudiante() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        const request = this.mapRequest();
+        this.estudianteService.updateEstudiante(id, request).subscribe({
+            next: () => this.redirectToEstudiantes()
         });
     }
 
@@ -121,8 +136,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
           },
           correoUniversidad: personalValue.correoUniversidad,
           tituloPregrado: personalValue.tituloPregrado,
-          idDirector: maestriaValue.idDirector,
-          idCodirector: maestriaValue.idCodirector,
+          idDirector: maestriaValue.director?.id,
+          idCodirector: maestriaValue.codirector?.id,
           caracterizacion: {
             ...personalValue,
           },

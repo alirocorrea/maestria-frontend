@@ -27,10 +27,10 @@ export class BandejaDocentesComponent implements OnInit {
 
     ngOnInit(): void {
         this.setBreadcrumb();
-        this.lisrDocentes();
+        this.listDocentes();
     }
 
-    lisrDocentes() {
+    listDocentes() {
         this.loading = true;
         this.docenteService.listDocentes().subscribe({
             next: (response) => this.docentes = response.filter((d) => d.estado === 'ACTIVO'),
@@ -49,7 +49,7 @@ export class BandejaDocentesComponent implements OnInit {
     }
 
     onCargaExitosa() {
-        this.lisrDocentes();
+        this.listDocentes();
     }
 
     onEditar(id: number) {
@@ -70,7 +70,7 @@ export class BandejaDocentesComponent implements OnInit {
         this.docenteService.deleteDocente(id).subscribe({
             next: () => {
                 this.messageService.add(infoMessage(Mensaje.ESTUDIANTE_ELIMINADO_CORRECTAMENTE));
-                this.lisrDocentes();
+                this.listDocentes();
             }
         });
     }

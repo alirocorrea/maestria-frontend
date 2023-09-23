@@ -25,6 +25,7 @@ import { DataViewModule } from 'primeng/dataview';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FieldsetModule } from 'primeng/fieldset';
 import { FileUploadModule } from 'primeng/fileupload';
 import { GalleriaModule } from 'primeng/galleria';
@@ -110,6 +111,7 @@ import {KeyFilterModule} from 'primeng/keyfilter';
     DialogModule,
     DividerModule,
     DropdownModule,
+    DynamicDialogModule,
     FieldsetModule,
     FileUploadModule,
     GalleriaModule,

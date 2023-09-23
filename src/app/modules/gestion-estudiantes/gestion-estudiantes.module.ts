@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CrearEditarEstudianteComponent } from './components/crear-editar-estudiante/crear-editar-estudiante.component';
 import { InformacionPersonalComponent } from './components/crear-editar-estudiante/informacion-personal/informacion-personal.component';
 import { InformacionMaestriaComponent } from './components/crear-editar-estudiante/informacion-maestria/informacion-maestria.component';
+import { DialogService } from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { InformacionMaestriaComponent } from './components/crear-editar-estudian
   providers: [
     MessageService,
     ConfirmationService,
+    DialogService,
     EstudianteService,
   ]
 })
