@@ -61,6 +61,10 @@ export class BandejaEstudiantesComponent implements OnInit {
         this.router.navigate(['estudiantes/estados', id]);
     }
 
+    onEditar(id: number) {
+        this.router.navigate(['estudiantes/editar', id]);
+    }
+
     onDelete(event:any, id: number, ) {
         this.confirmationService.confirm({
             target: event.target,

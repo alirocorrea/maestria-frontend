@@ -22,6 +22,10 @@ const routes: Routes = [
                 path: 'registrar',
                 component: CrearEditarEstudianteComponent,
             },
+            {
+                path: 'editar/:id',
+                component: CrearEditarEstudianteComponent,
+            },
         ]
     }
 ];

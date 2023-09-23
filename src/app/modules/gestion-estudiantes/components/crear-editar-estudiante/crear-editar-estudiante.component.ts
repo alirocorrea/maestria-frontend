@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService, PrimeIcons } from 'primeng/api';
 import { errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
 import { Mensaje } from 'src/app/core/enums/enums';
+import { confirmMessage } from '../../../../core/utils/message-util';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -16,31 +17,70 @@ import { Mensaje } from 'src/app/core/enums/enums';
 export class CrearEditarEstudianteComponent implements OnInit {
 
     loading: boolean;
+    editMode: boolean;
     form: FormGroup;
 
     constructor(
         private breadcrumbService: BreadcrumbService,
         private estudianteService: EstudianteService,
+        private confirmationService: ConfirmationService,
         private messageService: MessageService,
+        private route: ActivatedRoute,
         private router:Router,
         private fb: FormBuilder,
     ) {}
 
     ngOnInit(): void {
-        this.setBreadcrumb();
         this.initForm();
+        if (this.router.url.includes('editar')) {
+            this.loadEditMode();
+        }
+        this.setBreadcrumb();
     }
 
     setBreadcrumb() {
         this.breadcrumbService.setItems([
             { label: 'Gestión' },
             { label: 'Estudiantes' , routerLink:'estudiantes' },
-            { label: 'Registrar' },
+            { label: this.editMode ? 'Editar' : 'Registrar' },
         ]);
     }
 
+    loadEditMode() {
+        this.editMode = true;
+        this.loadEstudiante();
+    }
+
+    loadEstudiante() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        this.estudianteService.getEstudiante(id).subscribe({
+            next: (response) => this.setValuesForm(response),
+        });
+    }
+
+    setValuesForm(estudiante: Estudiante) {
+        this.personalForm.patchValue({
+            ...estudiante,
+            ...estudiante.persona,
+            ...estudiante.caracterizacion,
+        });
+
+        this.maestriaForm.patchValue({
+            ...estudiante,
+            ...estudiante.informacionMaestria,
+            ...estudiante.beca,
+        })
+    }
+
     onCancel() {
-        this.router.navigate(['estudiantes']);
+        if(this.form.pristine) {
+            this.router.navigate(['estudiantes']);
+            return;
+        }
+        this.confirmationService.confirm({
+            ...confirmMessage(Mensaje.CONFIRMAR_SALIR_SIN_GUARDAR),
+            accept: () => this.router.navigate(['estudiantes']),
+        });
     }
 
     onSave() {

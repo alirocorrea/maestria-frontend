@@ -38,7 +38,7 @@ export class EstudianteService {
 
     createEstudiante(estudiante: Estudiante) {
         return this.http.post<any>(
-            backend(`estudiantes`),
+            backend('estudiantes'),
             estudiante,
             { headers: getHeaders() }
         );
@@ -47,6 +47,21 @@ export class EstudianteService {
     deleteEstudiante(id: number) {
         return this.http.delete<any>(
             backend(`estudiantes/${id}`),
+            { headers: getHeaders() }
+        );
+    }
+
+    getEstudiante(id: number) {
+        return this.http.get<Estudiante>(
+            backend(`estudiantes/${id}`),
+            { headers: getHeaders() }
+        );
+    }
+
+    updateEstudiante(id: number, estudiante: Estudiante){
+        return this.http.post<any>(
+            backend(`estudiantes/${id}`),
+            estudiante,
             { headers: getHeaders() }
         );
     }
