@@ -124,10 +124,12 @@ export class ResumenComponent implements OnInit {
             contenido.style.width = '100%';
             vistaPreviaDiv.appendChild(contenido);
 
-            const valorEspacio = this.espacioVacioEnPaginas[i];
+            const valorEspacio =
+                (this.espacioVacioEnPaginas[i] * 279) /
+                this.imgDivProporcionContenido.height;
 
             const espacioVertical = document.createElement('div');
-            espacioVertical.style.height = valorEspacio + 'px';
+            espacioVertical.style.height = valorEspacio + 'mm';
             vistaPreviaDiv.appendChild(espacioVertical);
 
             const piePagina = new Image();
