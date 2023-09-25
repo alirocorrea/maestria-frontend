@@ -24,11 +24,6 @@ export class PlantillasComponent implements OnInit {
         'Noviembre',
         'Diciembre',
     ];
-    escudoUrl: string =
-        'https://www.unicauca.edu.co/pis/themes/ingesis/resources/img/blue.png';
-
-    iso900Sello: string =
-        'https://www.barranquilla.gov.co/wp-content/uploads/2020/11/ico-cert-procesos.png';
 
     private subscription: Subscription;
 
