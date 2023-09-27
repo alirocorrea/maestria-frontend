@@ -17,6 +17,7 @@ import 'jspdf-autotable';
 })
 export class ResumenComponent implements OnInit {
     @ViewChild('lineImage', { static: true }) lineImage: ElementRef;
+    @ViewChild('imgOficioSolicitud') imgOficioSolicitud: ElementRef;
     @ViewChild('firmaImage') firmaImage: ElementRef;
     @ViewChild('encabezadoSolicitud') encabezadoSolicitud: ElementRef;
     @ViewChild('piePaginaSolicitud') piePaginaSolicitud: ElementRef;
@@ -70,20 +71,18 @@ export class ResumenComponent implements OnInit {
                 this.convertirADivImagen('contenidoSolicitud'),
                 this.convertirADivImagen('proporcionContenido'),
             ];
+            setTimeout(() => {
+                Promise.all(promesas).then((imagenes) => {
+                    this.imgDivEncabezado = imagenes[0];
+                    this.imgDivPiePagina = imagenes[1];
+                    this.imgDivContenido = imagenes[2];
+                    this.imgDivProporcionContenido = imagenes[3];
 
-            Promise.all(promesas).then((imagenes) => {
-                // Todas las promesas se han resuelto
-                //console.log('Todas las conversiones han terminado.');
-                // Asigna las imágenes a las variables correspondientes
-                this.imgDivEncabezado = imagenes[0];
-                this.imgDivPiePagina = imagenes[1];
-                this.imgDivContenido = imagenes[2];
-                this.imgDivProporcionContenido = imagenes[3];
-                // ejecutar cualquier función después de que todas las conversiones hayan terminado.
-                this.segmentarContenido();
-                this.componerVistaPrevia();
-            });
-        }, 300);
+                    this.segmentarContenido();
+                    this.componerVistaPrevia();
+                });
+            }, 500);
+        }, 500);
     }
 
     convertirADivImagen(elementId: string) {
@@ -95,7 +94,7 @@ export class ResumenComponent implements OnInit {
 
         return new Promise<HTMLImageElement>((resolve) => {
             html2canvas(divElement, {
-                scale: 4, // Escala 4
+                scale: 3, // Escala 4
                 logging: false,
             }).then((canvas) => {
                 const imagenVariable = new Image();
@@ -140,6 +139,8 @@ export class ResumenComponent implements OnInit {
     }
 
     segmentarContenido() {
+        this.segmentosContenido = [];
+        this.espacioVacioEnPaginas = [];
         // Constantes
         const heightEncabezado = this.imgDivEncabezado.height;
         const heightContenido = this.imgDivContenido.height;
@@ -192,7 +193,9 @@ export class ResumenComponent implements OnInit {
             //Actualizar las nuevas posiciones de recorte
             corteY1 = corteY2Adecuado;
             corteY2 = corteY2Adecuado + heightRecorte;
+            console.log('SEGMENTAR');
         }
+        console.log('Segmentos ' + this.segmentosContenido.length);
     }
 
     encontrarLineaBlancaY(elementoImagen: HTMLImageElement, posicionY: number) {
@@ -292,6 +295,36 @@ export class ResumenComponent implements OnInit {
             this.firmaImage.nativeElement.src = e.target.result;
         };
         reader.readAsDataURL(this.radicar.firmaSolicitante);
+    }
+
+    firmarSolicitud() {
+        this.firmaEnProceso = true;
+
+        const divContenido = this.contenidoSolicitud.nativeElement;
+
+        divContenido.style.display = '';
+
+        this.radicar.sendClickEvent();
+
+        setTimeout(() => {
+            const promesas = [this.convertirADivImagen('contenidoSolicitud')];
+            setTimeout(() => {
+                Promise.all(promesas).then((imagenes) => {
+                    this.imgDivContenido = imagenes[0];
+                    this.segmentarContenido();
+                    this.componerVistaPrevia();
+                    this.firmaEnProceso = false;
+                    this.mostrarBtnFirmar = false;
+                });
+            }, 500);
+        }, 500);
+    }
+
+    mostrarImagenEnLineImage(imagen: HTMLImageElement) {
+        const lineImageElement = this.lineImage.nativeElement;
+        lineImageElement.src = imagen.src;
+        lineImageElement.style.width = '100%'; // Puedes ajustar el ancho según tus necesidades
+        // También puedes establecer otros atributos o estilos aquí si es necesario
     }
 
     enviarSolicitud() {}
