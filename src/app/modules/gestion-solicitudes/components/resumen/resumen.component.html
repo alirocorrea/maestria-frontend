@@ -5,7 +5,50 @@
         </p>
         <p>Revise, corrija y firme la solicitud a enviar</p>
     </div>
+    <div
+        *ngIf="generandoVistaPrevia"
+        class="card z-4 absolute"
+        style="
+            width: 220mm;
 
+            padding-left: 2.5cm;
+            padding-right: 2.5cm;
+            margin-left: auto;
+            margin-right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        "
+    >
+        <ng-container *ngFor="let item of [1, 2, 3]; let i = index">
+            <p-skeleton width="15rem" styleClass="mb-2 mt-6"></p-skeleton>
+            <p-skeleton width="15rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="12rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="20rem" styleClass="mb-6 mt-4"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton width="40rem" styleClass="mb-2 mt-2"></p-skeleton>
+
+            <p-skeleton height="18rem" styleClass="mb-2 mt-4"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-4"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2 mt-4"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+
+            <p-skeleton
+                width="10rem"
+                height="5rem"
+                styleClass="mt-5 "
+            ></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2 mt-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+
+            <p-skeleton styleClass="mb-2 mt-8"></p-skeleton>
+            <p-skeleton styleClass="mb-2 mt-2"></p-skeleton
+        ></ng-container>
+    </div>
     <div
         #encabezadoSolicitud
         id="encabezadoSolicitud"
@@ -102,7 +145,6 @@
     <div
         #proporcionContenido
         id="proporcionContenido"
-        class="border-1"
         style="width: 216mm; height: 279mm"
     ></div>
 
