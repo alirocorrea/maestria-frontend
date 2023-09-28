@@ -8,7 +8,6 @@ import {
 import { Router } from '@angular/router';
 import { RadicarService } from '../../services/radicar.service';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
 @Component({
@@ -34,7 +33,6 @@ export class ResumenComponent implements OnInit {
     segmentosContenido: HTMLImageElement[];
     espacioVacioEnPaginas: number[];
 
-    generandoVistaPrevia = true;
     firmaEnProceso = false;
     mostrarBtnFirmar = false;
     fechaActual: Date = new Date();
@@ -82,7 +80,6 @@ export class ResumenComponent implements OnInit {
 
                     this.segmentarContenido();
                     this.componerVistaPrevia();
-                    this.generandoVistaPrevia = false;
                 });
             }, 500);
         }, 500);
@@ -92,19 +89,19 @@ export class ResumenComponent implements OnInit {
         const divElement = document.getElementById(elementId);
 
         if (!divElement) {
-            return Promise.resolve(null);
+            return Promise.resolve(null); // Si no se encuentra el elemento, resuelve la promesa con null
         }
 
         return new Promise<HTMLImageElement>((resolve) => {
             html2canvas(divElement, {
-                scale: 3,
+                scale: 3, // Escala 4
                 logging: false,
             }).then((canvas) => {
                 const imagenVariable = new Image();
-                imagenVariable.src = canvas.toDataURL('image/jpeg', 1.0);
-
+                imagenVariable.src = canvas.toDataURL('image/jpeg', 1.0); // Formato JPEG 1.0
+                // Oculta el div
                 this.renderer.setStyle(divElement, 'display', 'none');
-                resolve(imagenVariable);
+                resolve(imagenVariable); // Resuelve la promesa con la imagen convertida
             });
         });
     }
@@ -126,13 +123,9 @@ export class ResumenComponent implements OnInit {
             contenido.style.width = '100%';
             vistaPreviaDiv.appendChild(contenido);
 
-            let valorEspacio =
+            const valorEspacio =
                 (this.espacioVacioEnPaginas[i] * 279) /
                 this.imgDivProporcionContenido.height;
-
-            if (valorEspacio >= 6 && i == this.segmentosContenido.length - 1) {
-                valorEspacio -= 6;
-            }
 
             const espacioVertical = document.createElement('div');
             espacioVertical.style.height = valorEspacio + 'mm';
@@ -148,7 +141,7 @@ export class ResumenComponent implements OnInit {
     segmentarContenido() {
         this.segmentosContenido = [];
         this.espacioVacioEnPaginas = [];
-
+        // Constantes
         const heightEncabezado = this.imgDivEncabezado.height;
         const heightContenido = this.imgDivContenido.height;
         const heightPiePagina = this.imgDivPiePagina.height;
@@ -206,6 +199,7 @@ export class ResumenComponent implements OnInit {
     }
 
     encontrarLineaBlancaY(elementoImagen: HTMLImageElement, posicionY: number) {
+        // Obtén el contexto 2D del canvas
         const canvas = document.createElement('canvas');
         canvas.width = elementoImagen.width;
         canvas.height = 1;
@@ -222,7 +216,7 @@ export class ResumenComponent implements OnInit {
             );
 
             function esLineBlanca() {
-                // Obtener los datos de píxeles de la línea
+                // Obtén los datos de píxeles de la línea
                 const imageData = ctx.getImageData(
                     0,
                     0,
@@ -239,12 +233,12 @@ export class ResumenComponent implements OnInit {
                         data[i + 2] !== 255 ||
                         data[i + 3] !== 255
                     ) {
-                        // Al menos un píxel no es blanco, así que retorna false
+                        // Al menos un píxel no es blanco, así que retornamos false
                         return false;
                     }
                 }
 
-                // Todos los píxeles son blancos, retorna true
+                // Todos los píxeles son blancos, retornamos true
                 return true;
             }
 
@@ -263,6 +257,7 @@ export class ResumenComponent implements OnInit {
         y1: number,
         y2: number
     ): HTMLImageElement {
+        // Crear un elemento HTML canvas
         const canvas = this.renderer.createElement('canvas');
         const ctx = canvas.getContext('2d');
 
@@ -285,7 +280,7 @@ export class ResumenComponent implements OnInit {
 
         // Crear una nueva imagen a partir del canvas
         const imagenRecortada = new Image();
-        imagenRecortada.src = canvas.toDataURL('image/jpeg', 1.0);
+        imagenRecortada.src = canvas.toDataURL('image/jpeg', 1.0); // Puedes cambiar el formato si lo deseas
 
         return imagenRecortada;
     }
@@ -306,6 +301,7 @@ export class ResumenComponent implements OnInit {
         this.firmaEnProceso = true;
 
         const divContenido = this.contenidoSolicitud.nativeElement;
+
         divContenido.style.display = '';
 
         this.radicar.sendClickEvent();
@@ -327,46 +323,11 @@ export class ResumenComponent implements OnInit {
     mostrarImagenEnLineImage(imagen: HTMLImageElement) {
         const lineImageElement = this.lineImage.nativeElement;
         lineImageElement.src = imagen.src;
-        lineImageElement.style.width = '100%';
+        lineImageElement.style.width = '100%'; // Puedes ajustar el ancho según tus necesidades
+        // También puedes establecer otros atributos o estilos aquí si es necesario
     }
 
-    crearPDF() {
-        const div = this.vistaPreviaSolicitud.nativeElement;
-        const scale = 3;
-
-        html2canvas(div, { scale: scale }).then((canvas) => {
-            const imgData = canvas.toDataURL('image/jpeg', 1.0);
-            const pdf = new jsPDF('p', 'mm', 'letter');
-
-            const imgWidth = 216; // Ancho de la imagen en mm (ajústalo según tus necesidades)
-            const pageHeight = 282; // Altura de la página en mm
-
-            let position = 0;
-            let desfase = -0.3;
-
-            for (
-                let index = 0;
-                index < this.segmentosContenido.length;
-                index++
-            ) {
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, 0);
-
-                if (index != this.segmentosContenido.length - 1) {
-                    pdf.addPage();
-                }
-
-                desfase -= 0.1;
-                position -= pageHeight + desfase;
-            }
-
-            // Guarda el PDF
-            pdf.save('Oficio de Solicitud.pdf');
-        });
-    }
-
-    enviarSolicitud() {
-        this.crearPDF();
-    }
+    enviarSolicitud() {}
 
     navigateToBack() {
         this.router.navigate(['/gestionsolicitudes/creacion/documentos']);
