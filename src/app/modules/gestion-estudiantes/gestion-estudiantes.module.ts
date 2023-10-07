@@ -17,6 +17,8 @@ import { InformacionMaestriaComponent } from './components/crear-editar-estudian
 import { DialogService } from 'primeng/dynamicdialog';
 import { ModalProrrogaComponent } from './components/modals/modal-prorroga/modal-prorroga.component';
 import { ModalReingresoComponent } from './components/modals/modal-reingreso/modal-reingreso.component';
+import { InformacionReingresosComponent } from './components/crear-editar-estudiante/informacion-reingresos/informacion-reingresos.component';
+import { InformacionProrrogasComponent } from './components/crear-editar-estudiante/informacion-prorrogas/informacion-prorrogas.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { ModalReingresoComponent } from './components/modals/modal-reingreso/mod
     InformacionPersonalComponent,
     InformacionMaestriaComponent,
     ModalProrrogaComponent,
-    ModalReingresoComponent
+    ModalReingresoComponent,
+    InformacionReingresosComponent,
+    InformacionProrrogasComponent
   ],
   imports: [
     CommonModule,

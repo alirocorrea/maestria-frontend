@@ -8,6 +8,7 @@ import { Docente } from 'src/app/modules/gestion-docentes/models/docente';
 import { BuscadorDocentesComponent } from 'src/app/shared/components/buscador-docentes/buscador-docentes.component';
 import { ModalProrrogaComponent } from '../../modals/modal-prorroga/modal-prorroga.component';
 import { ModalReingresoComponent } from '../../modals/modal-reingreso/modal-reingreso.component';
+import { Prorroga } from '../../../models/prorroga';
 
 @Component({
     selector: 'app-informacion-maestria',
@@ -106,19 +107,5 @@ export class InformacionMaestriaComponent implements OnInit {
             nombre: docente.persona.nombre,
             apellido: docente.persona.apellido,
         };
-    }
-
-    showModalProrroga() {
-        return this.dialogService.open(ModalProrrogaComponent, {
-            header: "Información prórroga/suspención de términos",
-            width: "60%",
-        });
-    }
-
-    showModalReingreso() {
-        return this.dialogService.open(ModalReingresoComponent, {
-            header: "Información reingreso",
-            width: "60%",
-        });
     }
 }

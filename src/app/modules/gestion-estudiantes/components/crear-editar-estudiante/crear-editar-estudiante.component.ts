@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
@@ -9,6 +9,8 @@ import { errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/messa
 import { Mensaje } from 'src/app/core/enums/enums';
 import { confirmMessage } from '../../../../core/utils/message-util';
 import { mapResponseException } from 'src/app/core/utils/exception-util';
+import { Prorroga } from '../../models/prorroga';
+import { InformacionProrrogasComponent } from './informacion-prorrogas/informacion-prorrogas.component';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -20,6 +22,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
     loading: boolean;
     editMode: boolean;
     form: FormGroup;
+
+    @ViewChild("prorrogas") informacionProrrogas: InformacionProrrogasComponent;
 
     constructor(
         private breadcrumbService: BreadcrumbService,
@@ -72,7 +76,12 @@ export class CrearEditarEstudianteComponent implements OnInit {
             ...estudiante.informacionMaestria,
             ...estudiante.beca,
             idBeca: estudiante.beca.id,
-        })
+        });
+
+        if (this.informacionProrrogas) {
+            this.informacionProrrogas.prorrogas = estudiante.prorrogas;
+        }
+
     }
 
     onCancel() {
@@ -167,7 +176,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
             esOfrecidaPorUnicauca: maestriaValue.esOfrecidaPorUnicauca,
             id: maestriaValue.idBeca,
           },
-          prorrogas: [],
+          prorrogas: this.informacionProrrogas?.prorrogas ?? [],
           reingresos: [],
         };
       }

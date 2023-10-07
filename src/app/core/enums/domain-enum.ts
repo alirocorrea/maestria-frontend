@@ -119,3 +119,12 @@ export enum AbreviaturaTitulo {
 	MG = "Mg.",
 	PHD = "Phd.",
 }
+
+export enum TipoProrrogaSupencion {
+    CIRCUNSTANCIAS_PERSONALES = "Circunstancias personales",
+    INVESTIGACION_O_PROYECTOS = "Investigación o proyectos especiales",
+    LICENCIA_MEDICA = "Licencia médica",
+    PROBLEMAS_ACADEMICOS = "Problemas académicos",
+    RAZONES_FAMILIARES = "Razones familiares",
+    SERVICIO_MILITAR = "Servicio militar o servicio público",
+  }
