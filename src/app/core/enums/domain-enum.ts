@@ -92,3 +92,30 @@ export enum DedicacionBeca {
 	TIEMPO_PARCIAL = "Tiempo parcial",
 	TIEMPO_COMPLETO = "Tiempo completo",
 }
+
+export enum CategoriaMinCiencia {
+	JUNIOR = "Junior",
+	SENIOR = "Senior",
+	ASOCIADO = "Asociado",
+	SIN_CATEGORIA = "Sin categoria",
+}
+
+export enum TipoVinculacion {
+	PLANTA = "Planta",
+	OCACIONAL = "Ocacional",
+	CATEDRA = "Catedra",
+}
+
+export enum EscalafonDocente {
+	AUXILIAR = "Auxiliar",
+	ASISTENTE = "Asistente",
+	ASOCICADO = "Asociado",
+	TITULAR = "Titular",
+}
+
+export enum AbreviaturaTitulo {
+	ING = "Ing.",
+	ESP = "Esp.",
+	MG = "Mg.",
+	PHD = "Phd.",
+}

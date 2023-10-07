@@ -34,7 +34,7 @@ export class BuscadorDocentesComponent implements OnInit {
     }
 
     filterDocentes(filter: string) {
-        if (filter && filter.trim()) {
+        if (filter?.trim()) {
             this.loading = true;
             this.docenteService.filterDocentes(filter).subscribe({
                     next: (response) => (this.docentes = this.getDocentesActivos(response)),
@@ -62,6 +62,6 @@ export class BuscadorDocentesComponent implements OnInit {
 
     onRegistrar() {
         this.ref.close();
-        this.router.navigate(['docentes']);
+        this.router.navigate(['docentes/registrar']);
     }
 }
