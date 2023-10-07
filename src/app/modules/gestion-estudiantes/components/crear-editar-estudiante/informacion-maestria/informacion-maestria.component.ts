@@ -4,7 +4,10 @@ import { SelectItem } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DedicacionBeca, ModalidadIngreso, TipoBeca } from 'src/app/core/enums/domain-enum';
 import { enumToSelectItems } from 'src/app/core/utils/util';
+import { Docente } from 'src/app/modules/gestion-docentes/models/docente';
 import { BuscadorDocentesComponent } from 'src/app/shared/components/buscador-docentes/buscador-docentes.component';
+import { ModalProrrogaComponent } from '../../modals/modal-prorroga/modal-prorroga.component';
+import { ModalReingresoComponent } from '../../modals/modal-reingreso/modal-reingreso.component';
 
 @Component({
     selector: 'app-informacion-maestria',
@@ -78,11 +81,7 @@ export class InformacionMaestriaComponent implements OnInit {
         ref.onClose.subscribe({
             next: (response) => {
                 if (response) {
-                    const director = {
-                        id: response.id,
-                        nombre: response.persona.nombre,
-                        apellido: response.persona.apellido,
-                    };
+                    const director = this.mapDocenteLabel(response);
                     this.director.setValue(director);
                 }
             }
@@ -94,14 +93,32 @@ export class InformacionMaestriaComponent implements OnInit {
         ref.onClose.subscribe({
             next: (response) => {
                 if (response) {
-                    const codirector = {
-                        id: response.id,
-                        nombre: response.persona.nombre,
-                        apellido: response.persona.apellido,
-                    };
+                    const codirector = this.mapDocenteLabel(response);
                     this.codirector.setValue(codirector);
                 }
             }
+        });
+    }
+
+    mapDocenteLabel(docente: Docente) {
+        return {
+            id: docente.id,
+            nombre: docente.persona.nombre,
+            apellido: docente.persona.apellido,
+        };
+    }
+
+    showModalProrroga() {
+        return this.dialogService.open(ModalProrrogaComponent, {
+            header: "Información prórroga/suspención de términos",
+            width: "60%",
+        });
+    }
+
+    showModalReingreso() {
+        return this.dialogService.open(ModalReingresoComponent, {
+            header: "Información reingreso",
+            width: "60%",
         });
     }
 }

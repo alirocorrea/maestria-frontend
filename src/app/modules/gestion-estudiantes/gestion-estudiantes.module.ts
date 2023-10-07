@@ -15,6 +15,8 @@ import { CrearEditarEstudianteComponent } from './components/crear-editar-estudi
 import { InformacionPersonalComponent } from './components/crear-editar-estudiante/informacion-personal/informacion-personal.component';
 import { InformacionMaestriaComponent } from './components/crear-editar-estudiante/informacion-maestria/informacion-maestria.component';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ModalProrrogaComponent } from './components/modals/modal-prorroga/modal-prorroga.component';
+import { ModalReingresoComponent } from './components/modals/modal-reingreso/modal-reingreso.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { DialogService } from 'primeng/dynamicdialog';
     EstadosEstudianteComponent,
     CrearEditarEstudianteComponent,
     InformacionPersonalComponent,
-    InformacionMaestriaComponent
+    InformacionMaestriaComponent,
+    ModalProrrogaComponent,
+    ModalReingresoComponent
   ],
   imports: [
     CommonModule,

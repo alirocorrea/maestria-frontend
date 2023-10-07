@@ -314,6 +314,19 @@
                             <td></td>
                         </tr>
                     </ng-template>
+                    <!-- Agregar nuevo registro -->
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-end">
+                            <button
+                                pButton
+                                pTooltip="Agregar prórroga"
+                                icon="pi pi-plus"
+                                class="p-button"
+                                styleClass="p-button-sm"
+                                (click)="showModalProrroga()"
+                            ></button>
+                        </div>
+                    </ng-template>
                     <!-- Mensaje sin registros -->
                     <ng-template pTemplate="emptymessage" let-columns>
                         <tr>
@@ -360,6 +373,19 @@
                             <td>{{ reingreso.linkDocumento }}</td>
                             <td class="text-center"></td>
                         </tr>
+                    </ng-template>
+                    <!-- Agregar nuevo registro -->
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-end">
+                            <button
+                                pButton
+                                pTooltip="Agregar reingreso"
+                                icon="pi pi-plus"
+                                class="p-button"
+                                styleClass="p-button-sm"
+                                (click)="showModalReingreso()"
+                            ></button>
+                        </div>
                     </ng-template>
                     <!-- Mensaje sin registros -->
                     <ng-template pTemplate="emptymessage" let-columns>
