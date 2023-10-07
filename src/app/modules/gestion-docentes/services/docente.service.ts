@@ -51,7 +51,6 @@ export class DocenteService {
         );
     }
 
-
     deleteDocente(id: number) {
         return this.http.patch<any>(
             backend(`docentes/eliminar-logico/${id}`),

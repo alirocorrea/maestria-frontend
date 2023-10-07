@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Mensaje } from 'src/app/core/enums/enums';
-import { confirmMessage, warnMessage } from 'src/app/core/utils/message-util';
+import { confirmMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
 import { Estudiante } from 'src/app/modules/gestion-estudiantes/models/estudiante';
 import { DocenteService } from '../../services/docente.service';
 import { Docente } from '../../models/docente';
@@ -61,13 +61,13 @@ export class CrearEditarDocenteComponent implements OnInit {
 
     setValuesForm(docente: Docente) {
         this.personalForm.patchValue({
-
+            ...docente.persona
         });
         this.tituloForm.patchValue({
-
+            ...docente.titulos[0]
         })
         this.universidadForm.patchValue({
-
+            ...docente
         })
     }
 
@@ -101,7 +101,7 @@ export class CrearEditarDocenteComponent implements OnInit {
     createDocente() {
         const request = this.mapRequest();
         this.docenteService.createDocente(request).subscribe({
-            next: () =>  this.messageService.add(warnMessage(Mensaje.GUARDADO_EXITOSO)),
+            next: () =>  this.messageService.add(infoMessage(Mensaje.GUARDADO_EXITOSO)),
             complete: () => this.redirectToDocentes()
         });
     }
@@ -110,7 +110,7 @@ export class CrearEditarDocenteComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         const request = this.mapRequest();
         this.docenteService.updateDocente(id, request).subscribe({
-            next: () => this.messageService.add(warnMessage(Mensaje.ACTUALIZACION_EXITOSA)),
+            next: () => this.messageService.add(infoMessage(Mensaje.ACTUALIZACION_EXITOSA)),
             complete: () => this.redirectToDocentes()
         });
     }
@@ -127,13 +127,15 @@ export class CrearEditarDocenteComponent implements OnInit {
         this.form.setControl(name, group);
     }
 
-    mapRequest(): Estudiante {
+    mapRequest(): Docente {
         const personalValue = this.personalForm.getRawValue();
         const tituloValue = this.tituloForm.getRawValue();
         const universidadValue = this.universidadForm.getRawValue();
 
         return {
-
+            persona: { ...personalValue },
+            titulos: [{ ...tituloValue }],
+            ...universidadValue,
         };
       }
 

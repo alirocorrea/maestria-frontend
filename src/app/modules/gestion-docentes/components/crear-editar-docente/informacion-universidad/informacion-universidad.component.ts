@@ -28,11 +28,11 @@ export class InformacionUniversidadComponent implements OnInit {
 
     initForm(): void {
         this.universidadForm = this.fb.group({
-            codigo: [''],
+            codigo: ['0'],
             facultad: [''],
             departamento: [''],
-            tipoVinculacion: [''],
-            escalafon: [''],
+            tipoVinculacion: [null],
+            escalafon: [null],
             observacion: [''],
             idsLineasInvestigacion: [''],
         });

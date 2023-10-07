@@ -5,7 +5,7 @@ import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadc
 import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { warnMessage } from 'src/app/core/utils/message-util';
+import { infoMessage, warnMessage } from 'src/app/core/utils/message-util';
 import { Mensaje } from 'src/app/core/enums/enums';
 import { confirmMessage } from '../../../../core/utils/message-util';
 
@@ -103,7 +103,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
     createEstudiante() {
         const request = this.mapRequest();
         this.estudianteService.createEstudiante(request).subscribe({
-            next: () =>  this.messageService.add(warnMessage(Mensaje.GUARDADO_EXITOSO)),
+            next: () =>  this.messageService.add(infoMessage(Mensaje.GUARDADO_EXITOSO)),
             complete: () => this.redirectToEstudiantes()
         });
     }
@@ -112,7 +112,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         const request = this.mapRequest();
         this.estudianteService.updateEstudiante(id, request).subscribe({
-            next: () => this.messageService.add(warnMessage(Mensaje.ACTUALIZACION_EXITOSA)),
+            next: () => this.messageService.add(infoMessage(Mensaje.ACTUALIZACION_EXITOSA)),
             complete: () => this.redirectToEstudiantes()
         });
     }
