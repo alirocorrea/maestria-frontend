@@ -16,7 +16,7 @@ export class EstudianteService {
     listEstudiantes(): Observable<Estudiante[]> {
         return this.http.get<Estudiante[]>(
             backend('estudiantes'),
-            { headers: getHeaders() }
+
         );
     }
 
@@ -59,7 +59,7 @@ export class EstudianteService {
     }
 
     updateEstudiante(id: number, estudiante: Estudiante){
-        return this.http.post<any>(
+        return this.http.put<any>(
             backend(`estudiantes/${id}`),
             estudiante,
             { headers: getHeaders() }

@@ -30,6 +30,7 @@ export class InformacionPersonalComponent implements OnInit {
 
     initForm(): void {
         this.personalForm = this.fb.group({
+            "idPersona": [''],
             "codigo": ['', Validators.required],
             "tipoIdentificacion": ['', Validators.required],
             "identificacion": ['', Validators.required],

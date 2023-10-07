@@ -1,4 +1,5 @@
 export interface Beca {
+    id?: number;
     titulo?: string;
     entidadAsociada?: string;
     tipo?: string;

@@ -9,4 +9,6 @@ export enum Mensaje {
     ERROR_CARGAR_DOCENTESS = "Error al registrar los docentes",
     DOCENTE_ELIMINADO_CORRECTAMENTE = "Docente eliminado correctamente",
     CONFIRMAR_ELIMINAR_DOCENTE = "¿Está seguro de eliminar este docente?",
+    ACTUALIZACION_EXITOSA= "El registro fue actualizado exitosamente",
+    GUARDADO_EXITOSO  =  "Los datos han sido guardados exitosamente",
 }

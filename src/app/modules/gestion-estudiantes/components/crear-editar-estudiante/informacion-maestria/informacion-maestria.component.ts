@@ -48,6 +48,7 @@ export class InformacionMaestriaComponent implements OnInit {
             "tipo": [null],
             "esOfrecidaPorUnicauca": [''],
             "dedicacion": [null],
+            "idBeca": [''],
         });
 
         this.formReady.emit(this.maestriaForm);

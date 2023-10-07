@@ -63,12 +63,14 @@ export class CrearEditarEstudianteComponent implements OnInit {
             ...estudiante,
             ...estudiante.persona,
             ...estudiante.caracterizacion,
+            idPersona: estudiante.persona?.id,
         });
 
         this.maestriaForm.patchValue({
             ...estudiante,
             ...estudiante.informacionMaestria,
             ...estudiante.beca,
+            idBeca: estudiante.beca.id,
         })
     }
 
@@ -101,7 +103,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
     createEstudiante() {
         const request = this.mapRequest();
         this.estudianteService.createEstudiante(request).subscribe({
-            next: () => this.redirectToEstudiantes()
+            next: () =>  this.messageService.add(warnMessage(Mensaje.GUARDADO_EXITOSO)),
+            complete: () => this.redirectToEstudiantes()
         });
     }
 
@@ -109,7 +112,8 @@ export class CrearEditarEstudianteComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         const request = this.mapRequest();
         this.estudianteService.updateEstudiante(id, request).subscribe({
-            next: () => this.redirectToEstudiantes()
+            next: () => this.messageService.add(warnMessage(Mensaje.ACTUALIZACION_EXITOSA)),
+            complete: () => this.redirectToEstudiantes()
         });
     }
 
@@ -133,6 +137,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
           persona: {
             ...personalValue,
             correoElectronico: personalValue.correoUniversidad,
+            id: personalValue.idPersona,
           },
           correoUniversidad: personalValue.correoUniversidad,
           tituloPregrado: personalValue.tituloPregrado,
@@ -147,6 +152,7 @@ export class CrearEditarEstudianteComponent implements OnInit {
           beca: {
             ...maestriaValue,
             esOfrecidaPorUnicauca: maestriaValue.esOfrecidaPorUnicauca,
+            id: maestriaValue.idBeca,
           },
           prorrogas: [],
           reingresos: [],
