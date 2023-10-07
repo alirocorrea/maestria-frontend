@@ -5,9 +5,10 @@ import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadc
 import { Estudiante } from '../../models/estudiante';
 import { EstudianteService } from '../../services/estudiante.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { infoMessage, warnMessage } from 'src/app/core/utils/message-util';
+import { errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
 import { Mensaje } from 'src/app/core/enums/enums';
 import { confirmMessage } from '../../../../core/utils/message-util';
+import { mapResponseException } from 'src/app/core/utils/exception-util';
 
 @Component({
   selector: 'app-crear-editar-estudiante',
@@ -102,18 +103,30 @@ export class CrearEditarEstudianteComponent implements OnInit {
 
     createEstudiante() {
         const request = this.mapRequest();
+        this.loading = true;
         this.estudianteService.createEstudiante(request).subscribe({
             next: () =>  this.messageService.add(infoMessage(Mensaje.GUARDADO_EXITOSO)),
+            error: (e) => this.handlerResponseException(e),
             complete: () => this.redirectToEstudiantes()
-        });
+        }).add(() => this.loading = false);
     }
 
     updateEstudiante() {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         const request = this.mapRequest();
+        this.loading = true;
         this.estudianteService.updateEstudiante(id, request).subscribe({
             next: () => this.messageService.add(infoMessage(Mensaje.ACTUALIZACION_EXITOSA)),
+            error: (e) => this.handlerResponseException(e),
             complete: () => this.redirectToEstudiantes()
+        }).add(() => this.loading = false);
+    }
+
+    handlerResponseException(response: any) {
+        if (response.status != 501) return;
+        const mapException = mapResponseException(response.error);
+        mapException.forEach((value, _) => {
+            this.messageService.add(errorMessage(value))
         });
     }
 

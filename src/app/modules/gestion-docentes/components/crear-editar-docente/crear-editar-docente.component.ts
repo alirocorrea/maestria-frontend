@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BreadcrumbService } from 'src/app/core/components/breadcrumb/app.breadcrumb.service';
 import { Mensaje } from 'src/app/core/enums/enums';
-import { confirmMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
+import { confirmMessage, errorMessage, infoMessage, warnMessage } from 'src/app/core/utils/message-util';
 import { Estudiante } from 'src/app/modules/gestion-estudiantes/models/estudiante';
 import { DocenteService } from '../../services/docente.service';
 import { Docente } from '../../models/docente';
+import { mapResponseException } from 'src/app/core/utils/exception-util';
 
 @Component({
   selector: 'app-crear-editar-docente',
@@ -15,7 +16,6 @@ import { Docente } from '../../models/docente';
   styleUrls: ['./crear-editar-docente.component.scss']
 })
 export class CrearEditarDocenteComponent implements OnInit {
-
 
     loading: boolean;
     editMode: boolean;
@@ -100,18 +100,30 @@ export class CrearEditarDocenteComponent implements OnInit {
 
     createDocente() {
         const request = this.mapRequest();
+        this.loading = true;
         this.docenteService.createDocente(request).subscribe({
             next: () =>  this.messageService.add(infoMessage(Mensaje.GUARDADO_EXITOSO)),
+            error: (e) => this.handlerResponseException(e),
             complete: () => this.redirectToDocentes()
-        });
+        }).add(() => this.loading = false);
     }
 
     updateDocente() {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         const request = this.mapRequest();
+        this.loading = true;
         this.docenteService.updateDocente(id, request).subscribe({
             next: () => this.messageService.add(infoMessage(Mensaje.ACTUALIZACION_EXITOSA)),
+            error: (e) => this.handlerResponseException(e),
             complete: () => this.redirectToDocentes()
+        }).add(() => this.loading = false);
+    }
+
+    handlerResponseException(response: any) {
+        if (response.status != 501) return;
+        const mapException = mapResponseException(response.error);
+        mapException.forEach((value, _) => {
+            this.messageService.add(errorMessage(value))
         });
     }
 

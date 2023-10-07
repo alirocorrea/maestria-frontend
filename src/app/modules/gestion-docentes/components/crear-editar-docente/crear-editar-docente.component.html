@@ -21,6 +21,7 @@
             icon="pi pi-save"
             label="Registrar docente"
             (click)="onSave()"
+            [loading]="loading"
         ></button>
         <button
             *ngIf="editMode"
@@ -28,6 +29,7 @@
             icon="pi pi-save"
             label="Editar docente"
             (click)="onSave()"
+            [loading]="loading"
         ></button>
     </p-footer>
 </p-panel>

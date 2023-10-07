@@ -97,7 +97,7 @@ export enum CategoriaMinCiencia {
 	JUNIOR = "Junior",
 	SENIOR = "Senior",
 	ASOCIADO = "Asociado",
-	SIN_CATEGORIA = "Sin categoria",
+	SIN_CATEGORIA = "Sin categoría",
 }
 
 export enum TipoVinculacion {

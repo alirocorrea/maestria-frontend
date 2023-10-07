@@ -20,6 +20,7 @@
             icon="pi pi-save"
             label="Registrar estudiante"
             (click)="onSave()"
+            [loading]="loading"
         ></button>
         <button
             *ngIf="editMode"
@@ -27,6 +28,7 @@
             icon="pi pi-save"
             label="Editar estudiante"
             (click)="onSave()"
+            [loading]="loading"
         ></button>
     </p-footer>
 </p-panel>
