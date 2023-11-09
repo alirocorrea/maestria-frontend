@@ -21,6 +21,34 @@ import { HomeComponent } from './core/components/home/home.component';
                     },
                 ],
             },
+
+            {
+                path: '', component: AppMainComponent,
+                children: [
+                    {path: '', component: HomeComponent},
+                    {
+                        path: 'gestion-asignaturas',
+                        loadChildren: () =>
+                            import(
+                                './modules/gestion-asignaturas/gestion-asignaturas.module'
+                            ).then((m) => m.GestionAsignaturasModule)
+                    },
+                ],
+            },
+
+            {
+                path: '', component: AppMainComponent,
+                children: [
+                    {path: '', component: HomeComponent},
+                    {
+                        path: 'gestion-documentos',
+                        loadChildren: () =>
+                            import(
+                                './modules/gestion-documentos/gestion-documentos.module'
+                            ).then((m) => m.GestionDocumentosModule)
+                    },
+                ],
+            },
             {path:'pages/error', component: ErrorComponent},
             {path:'pages/notfound', component: NotfoundComponent},
             {path:'pages/access', component: AccessComponent},

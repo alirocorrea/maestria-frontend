@@ -21,6 +21,7 @@ import { HomeComponent } from './core/components/home/home.component';
 import { SharedModule } from 'primeng/api';
 import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-estudiantes.module';
 
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -40,7 +41,8 @@ import { GestionEstudiantesModule } from './modules/gestion-estudiantes/gestion-
         AppMenuComponent,
         AppMenuitemComponent,
         AppConfigComponent,
-        HomeComponent
+        HomeComponent,
+
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
