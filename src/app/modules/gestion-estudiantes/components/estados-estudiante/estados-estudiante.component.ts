@@ -49,4 +49,9 @@ export class EstadosEstudianteComponent implements OnInit {
     onVolver() {
         this.router.navigate(['estudiantes']);
     }
+
+    onEdicion() {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        this.router.navigate([`estudiantes/editar/${id}`]);
+    }
 }

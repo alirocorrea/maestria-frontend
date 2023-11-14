@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { AbreviaturaTitulo, CategoriaMinCiencia, EscalafonDocente, TipoVinculacion } from 'src/app/core/enums/domain-enum';
-import { enumToSelectItems } from 'src/app/core/utils/util';
+import { enumToSelectItems, getRandomNumber } from 'src/app/core/utils/util';
 
 @Component({
   selector: 'app-informacion-universidad',
@@ -28,7 +28,7 @@ export class InformacionUniversidadComponent implements OnInit {
 
     initForm(): void {
         this.universidadForm = this.fb.group({
-            codigo: ['0'],
+            codigo: [getRandomNumber().toString()],
             facultad: [''],
             departamento: [''],
             tipoVinculacion: [null],

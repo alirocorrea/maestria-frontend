@@ -29,7 +29,7 @@ export class InformacionTituloComponent implements OnInit {
     initForm(): void {
         this.tituloForm = this.fb.group({
             "id": [''],
-            "titulo": ['', Validators.required],
+            "titulo": [''],
             "abreviatura": [''],
             "universidad": ['', Validators.required],
             "categoriaMinCiencia": [''],

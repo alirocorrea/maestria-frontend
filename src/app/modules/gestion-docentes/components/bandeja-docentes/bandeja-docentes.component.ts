@@ -62,14 +62,14 @@ export class BandejaDocentesComponent implements OnInit {
             message: Mensaje.CONFIRMAR_ELIMINAR_DOCENTE,
             icon: PrimeIcons.EXCLAMATION_TRIANGLE ,
             acceptLabel: 'Si, eliminar', rejectLabel: 'No',
-            accept: () => this.deleteEstudiante(id)
+            accept: () => this.deleteDocente(id)
         });
     }
 
-    deleteEstudiante(id: number) {
+    deleteDocente(id: number) {
         this.docenteService.deleteDocente(id).subscribe({
             next: () => {
-                this.messageService.add(infoMessage(Mensaje.ESTUDIANTE_ELIMINADO_CORRECTAMENTE));
+                this.messageService.add(infoMessage(Mensaje.DOCENTE_ELIMINADO_CORRECTAMENTE));
                 this.listDocentes();
             }
         });
