@@ -20,6 +20,16 @@ export const menuItems: MenuItem[] = [
                 icon: 'pi pi-user',
                 routerLink: '/docentes',
             },
+            {
+                label: 'ASIGNATURAS',
+                icon: 'pi pi-fw pi-clone',
+                routerLink:'/gestion-asignaturas',
+            },
+            {
+                label: 'DOCUMENTOS',
+                icon: 'pi pi-fw pi-clone',
+                routerLink:'/gestion-documentos',
+            }
         ]
     },
     {

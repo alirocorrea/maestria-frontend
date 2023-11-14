@@ -28,6 +28,20 @@ import { HomeComponent } from './core/components/home/home.component';
                                     './modules/gestion-docentes/gestion-docentes.module'
                                 ).then((m) => m.GestionDocentesModule),
                         },
+                        {
+                            path: 'gestion-asignaturas',
+                            loadChildren: () =>
+                                import(
+                                    './modules/gestion-asignaturas/gestion-asignaturas.module'
+                                ).then((m) => m.GestionAsignaturasModule)
+                        },
+                        {
+                            path: 'gestion-documentos',
+                            loadChildren: () =>
+                                import(
+                                    './modules/gestion-documentos/gestion-documentos.module'
+                                ).then((m) => m.GestionDocumentosModule)
+                        },
                     ],
                 },
                 { path: 'pages/error', component: ErrorComponent },
