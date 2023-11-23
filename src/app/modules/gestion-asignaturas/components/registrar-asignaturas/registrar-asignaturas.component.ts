@@ -6,6 +6,7 @@ import {
     FormControl,
 } from '@angular/forms';
 import { Asignatura } from '../../models/asignatura';
+import { Router } from '@angular/router';
 import { Acta } from '../../models/acta';
 import { AsignaturasService } from '../../services/asignaturas.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -112,7 +113,8 @@ export class RegistrarAsignaturasComponent implements OnInit {
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
         private asignaturaService: AsignaturasService, //private config: DynamicDialogConfig
-        private documentosService: DocumentosService
+        private documentosService: DocumentosService,
+        private router: Router
     ) {
         this.areasDeFormacion = [
             { nombre: 'Fundamentación', descripcion: 'NY' },
@@ -136,9 +138,7 @@ export class RegistrarAsignaturasComponent implements OnInit {
     docMaesctriaMicro: DocMaestria = {};
     ngOnInit(): void {
         this.asignaturaForm = this.initForm();
-        this.asignaturaService
-            .consultarAsignaturas()
-            .subscribe((data) => (this.asignaturas = data));
+
 
         this.asignaturaService.getListaDocentes().subscribe({
             next: (response) => {
@@ -176,7 +176,7 @@ export class RegistrarAsignaturasComponent implements OnInit {
         // Obtener la asignatura enviada desde el componente que abre el modal
         this.asignaturaEdit = this.asignaturaService.getAsignaturaData();
         if (this.asignaturaEdit) {
-            //console.log(this.asignaturaEdit);
+            console.log('ACA ESTA: ', this.asignaturaEdit);
             const fechaAprobacion = new Date(
                 this.asignaturaEdit.fechaAprobacion
             );
@@ -287,12 +287,9 @@ export class RegistrarAsignaturasComponent implements OnInit {
                         this.microcurriculoRecuperado.descripcionDocumento
                     );
 
-                    this.asignaturaForm
+                this.asignaturaForm
                     .get('base64FileMicrocurriculo')
-                    .setValue(
-                        this.docMaesctriaMicro.linkDocumento
-                    );
-
+                    .setValue(this.docMaesctriaMicro.linkDocumento);
 
                 //         versionDoc: [null, Validators.required],
                 // nombreDocumentoMicrocurriculo: [null, Validators.required],
@@ -486,7 +483,6 @@ export class RegistrarAsignaturasComponent implements OnInit {
 
     guardarAsignatura(): void {
         this.submitted = true;
-        debugger;
         if (this.asignaturaForm.valid) {
             const data = this.asignaturaForm.value;
             //console.log(data);
@@ -531,23 +527,56 @@ export class RegistrarAsignaturasComponent implements OnInit {
                 horasPresencial: data.horasPresenciales,
                 horasNoPresencial: data.horasNoPresenciales,
                 horasTotal: data.horasTotal,
-                listaDocentes: this.docentesSeleccionados,
-                listaActas: this.actasSeleccionadas,
+                listaDocentes: this.isEditMode
+                    ? null
+                    : this.docentesSeleccionados,
+                listaActas: this.isEditMode ? null : this.actasSeleccionadas,
             };
             //console.log(asignatura);
-            this.asignaturaService.registrarAsignatura(asignatura).subscribe({
-                next: (response) => {
-                    //console.log('Asignatura registrada:', response);
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Asignatura registrada',
-                        detail: 'La asignatura se ha registrado correctamente.',
+            if (this.isEditMode) {
+                asignatura['docentesAsignaturas'] =
+                    this.asignaturaEdit.docentesAsignaturas;
+                asignatura['actasAsignaturas'] =
+                    this.asignaturaEdit.actasAsignaturas;
+                asignatura['idAsignatura'] = this.asignaturaEdit.idAsignatura;
+                this.asignaturaService.editarAsignatura(asignatura).subscribe({
+                    next: (response) => {
+                        //console.log('Asignatura registrada:', response);
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Asignatura editada',
+                            detail: 'La asignatura se ha editado correctamente.',
+                        });
+                        this.router.navigateByUrl('/gestion-asignaturas');
+                    },
+                    error: (error) => {
+                        console.error(
+                            'Error al editar la asignatura:',
+                            error
+                        );
+                    },
+                });
+            } else {
+                this.asignaturaService
+                    .registrarAsignatura(asignatura)
+                    .subscribe({
+                        next: (response) => {
+                            //console.log('Asignatura registrada:', response);
+                            this.messageService.add({
+                                severity: 'success',
+                                summary: 'Asignatura registrada',
+                                detail: 'La asignatura se ha registrado correctamente.',
+                            });
+                            this.router.navigateByUrl('/gestion-asignaturas');
+                        },
+                        error: (error) => {
+                            console.error(
+                                'Error al registrar la asignatura:',
+                                error
+                            );
+                        },
                     });
-                },
-                error: (error) => {
-                    console.error('Error al registrar la asignatura:', error);
-                },
-            });
+            }
         } else {
             // Obtener los campos faltantes del formulario
             const camposFaltantes = [];
@@ -917,7 +946,6 @@ export class RegistrarAsignaturasComponent implements OnInit {
             'nombreAsignatura'
         ) as FormControl; // Cambia 'codigoAsignatura' por 'nombreAsignatura' si estás validando el nombre.
         const nombreAsignatura = control.value;
-        debugger;
         this.asignaturaService
             .validarNombreAsignatura(nombreAsignatura)
             .subscribe((existe) => {
